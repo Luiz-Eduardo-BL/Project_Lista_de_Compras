@@ -1,0 +1,58 @@
+@startuml diagrama
+skinparam ClassAttributeIconSize 0
+
+class Item{
+  -numProtudo:int
+  -nomeProtudo:string
+  -quantidade:int
+  -precoUnitario:float
+  -precoTotal:float
+  -desconto:float
+
+  +calcularPrecoTotal():void
+  +toString():string
+} 
+
+class Cliente{
+  -nomeCliente:string
+  -cpf:string
+  -cartaoCredito:string
+  -saldoConta:float
+
+  +registrar():void
+  +login():void
+  +atualizarPerfil():void
+  +atualizarSaldo():void
+  +toString():string
+}
+
+abstract class Usuario{
+  -nomeUsuario:string
+  -cpf:string
+  -senha:string
+  -statusLogin:boolean
+  -dataRegistro:string
+
+  +verificarLogin():boolean
+}
+
+class listaDeCompras{
+  -listaDeCompras:List<Item>
+  -numListaDeCompras:int
+  -numProtudo:int
+  -quantidade:int
+
+  +adicionarItem(item:Item):void
+  +removerItem(item:Item):void
+  +atualizarQuantidade(item:Item):void
+  +efetuarCompra():void
+  +cancelarCompra():void
+  +pagarCompra():void
+  +toString():string
+}
+
+Item --> listaDeCompras 
+Cliente <-- listaDeCompras
+Cliente --|> Usuario
+
+@enduml
