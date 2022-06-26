@@ -36,7 +36,7 @@ abstract class Usuario{
   +verificarLogin():boolean
 }
 
-class listaDeCompras{
+class ListaDeCompras{
   -listaDeCompras:List<Item>
   -numListaDeCompras:int
   -numProtudo:int
@@ -51,8 +51,8 @@ class listaDeCompras{
   +toString():string
 }
 
-Item --> listaDeCompras 
-Cliente <-- listaDeCompras
+Item --> ListaDeCompras 
+Cliente <-- ListaDeCompras
 Cliente --|> Usuario
 
 @enduml
