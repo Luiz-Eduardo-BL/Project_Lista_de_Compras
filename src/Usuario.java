@@ -23,8 +23,10 @@ abstract class Usuario {
 			statusLogin = true;
 			return true;
 		}
-		else
-			return false;
+		else{
+			statusLogin = false;
+			throw new MsgException("error: usuario ou senha incorreta");
+		}
 	}
 	
 	public boolean validaNome(String nome) {

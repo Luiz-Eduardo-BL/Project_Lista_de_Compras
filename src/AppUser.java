@@ -30,7 +30,7 @@ public class AppUser {
 		System.out.println("1. Adicionar item");
 		System.out.println("2. Remover item");
 		System.out.println("3. Listar itens");
-		System.out.println("4. Mostrar preço total");
+		System.out.println("4. Mostrar preï¿½o total");
 		System.out.println("5. Conta do cliente");
 		System.out.println("-------------------------------------------------------------------------");
 		
