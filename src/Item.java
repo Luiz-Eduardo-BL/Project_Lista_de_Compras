@@ -15,6 +15,9 @@ public class Item {
     this.desconto = desconto;
   }
 
+  public Item(String nomeCliente, String nomeProduto2, int quantidade2) {
+  }
+
   public int getNumProduto() {
     return numProduto;
   }

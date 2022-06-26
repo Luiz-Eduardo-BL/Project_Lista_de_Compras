@@ -64,12 +64,10 @@ public class ListaDeCompras {
 
   public void pagarCompra() {
     //paga a compra, ve o cartao do cliente, se tiver saldo paga, 
-    if(cartaoDoCliente.getSaldo() >= totalDaCompra()) {
-      cartaoDoCliente.setSaldo(cartaoDoCliente.getSaldo() - totalDaCompra());
-    }else{
-      throw new IllegalArgumentException("Saldo insuficiente");
+    if(listaDeCompras.size() > 0) {
+      for (Item item : listaDeCompras) {
+        item.setPrecoTotal(item.getPrecoTotal() - (item.getPrecoTotal() * item.getDesconto()));
+      }
     }
   }
-
-  
 }

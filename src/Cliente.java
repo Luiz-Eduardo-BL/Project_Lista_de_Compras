@@ -92,4 +92,29 @@ public class Cliente extends Usuario{
         
         return clientes;
     }
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+  public String getCartaoCredito() {
+		return cartaoCredito;
+  }
+
+  public float getSaldoConta() {
+		return saldoConta;
+  }
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Cliente [cpf = ");
+		builder.append(cpf);
+		builder.append(", cartaoCredito = ");
+		builder.append(cartaoCredito);
+		builder.append(", saldoConta = ");
+		builder.append(saldoConta);
+		builder.append("]");
+		return builder.toString();
+	}
 }

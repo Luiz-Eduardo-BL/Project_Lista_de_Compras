@@ -81,8 +81,5 @@ abstract class Usuario {
 	public void setDataRegistro(Date dataRegistro) {
 		this.dataRegistro = dataRegistro;
 	}
-	
-	
-	
-	
+
 }	
