@@ -8,17 +8,23 @@ abstract class Usuario {
 	private Date dataRegistro;
 	
 	public Usuario() {
-		
+
 	}
 	
 	public void registrar(String nome, String nomeUsuario, String senha) {
 		this.nome = nome;
 		this.nomeUser = nomeUsuario;
 		this.senha = senha;
+		this.dataRegistro = new Date();
 	}
 	
 	public boolean verificarLogin() {
-		return statusLogin;
+		if(nomeUser.equals(nome) && senha.equals(senha)) {
+			statusLogin = true;
+			return true;
+		}
+		else
+			return false;
 	}
 	
 	public boolean validaNome(String nome) {
