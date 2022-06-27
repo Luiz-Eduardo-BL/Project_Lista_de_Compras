@@ -11,12 +11,12 @@ abstract class Usuario {
 
 	}
 	
-	public void registrar(String nome, String nomeUsuario, String senha) {
+	/*public void registrar(String nome, String nomeUsuario, String senha) {
 		this.nome = nome;
 		this.nomeUser = nomeUsuario;
 		this.senha = senha;
 		this.dataRegistro = new Date();
-	}
+	}*/
 	
 	public boolean verificarLogin() {
 		if(nomeUser.equals(nome) && senha.equals(senha)) {
@@ -43,6 +43,10 @@ abstract class Usuario {
     		throw new MsgException("error: nome de usuario invalido");
 	}
 	
+	public void logout() {
+		statusLogin = false;
+	}
+
 	public boolean validaSenha(String nome) {
 		if(nome.matches("[A-Z[a-z[0-9[[-._]]]]]*"))
     		return true;

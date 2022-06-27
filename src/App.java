@@ -26,7 +26,7 @@ public class App {
         cliente.setCpf(nomeCliente);
         cliente.validaCartaoCredito(nomeCliente);
         cliente.validaCpf(nomeCliente);
-        cliente.registrar(nomeCliente, nomeCliente, nomeCliente, nomeCliente);
+        cliente.registrar(nomeCliente, nomeCliente, nomeCliente);
         cliente.login(nomeCliente, nomeCliente);
         cliente.setStatusLogin(true);
 

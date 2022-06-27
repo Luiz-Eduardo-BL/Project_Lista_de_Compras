@@ -1,7 +1,9 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +21,6 @@ public class Cliente extends Usuario{
 		 this.senha = senha;
 	}
 	
-	public void registrar(String nomeUsuario, String senha, String nomeCliente, String cpf) {
-			this.cpf = cpf;
-	}
-	
 	public boolean validaCpf(String nome) {
 		if(nome.matches("[0-9]*"))
     		return true;
@@ -35,6 +33,13 @@ public class Cliente extends Usuario{
     		return true;
     	else
     		throw new MsgException("error: Cartao de credito invalido");
+	}
+
+	public void registrar(String nome, String nomeUser, String senha) {
+		this.nome = nome;
+		this.nomeUser = nomeUser;
+		this.senha = senha;
+		writeList();
 	}
 	
 	public Cliente login(String nomeUser, String senha) {
@@ -52,6 +57,26 @@ public class Cliente extends Usuario{
 		throw new MsgException("error: usuario incorreta");
 		
 	}
+
+	private void writeList() {
+		// use try-with-resources to ensure file is closed safely
+		try (
+				/* create a FileWriter object, carFile, that handles
+				the low-level details of writing the list to a file 
+				which we have called "Cars.txt" */
+				FileWriter clienteFile = new FileWriter("clientesFile.txt", true);
+				/* now create a PrintWriter object to wrap around carFile;
+				this allows us to user high-level functions such as println */
+				PrintWriter clienteWriter = new PrintWriter(clienteFile);
+			)
+		{   
+			clienteWriter.print(String.format("%s;%s;%s;\n",  getNome(), 
+					getNomeUser(), getSenha()));
+		}
+		catch(IOException e) {
+			System.out.println("There was a problem writing the file");
+		}
+}
 	
 	public List<Cliente> readList() {
 		List<Cliente> clientes = new ArrayList<Cliente>();
