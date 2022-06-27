@@ -8,7 +8,7 @@ public class AppUser {
 	private static int operacao = -1;
 	
 	public void menuInicial() {
-		if(cliente.verificarLogin())
+		if(cliente.isStatusLogin())
 			menuCliente();
 		else {
 			System.out.println("-------------------------------------------------------------------------");
