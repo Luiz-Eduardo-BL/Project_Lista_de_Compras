@@ -80,7 +80,7 @@ public class Item {
   }
 
   public void calcularPrecoTotal() {
-    this.precoTotal = this.quantidade * this.precoUnitario;
+    this.precoTotal = this.quantidade * this.precoUnitario - desconto;
   }
 
   //Deconto maximo pode ser de 30%
@@ -169,12 +169,12 @@ public class Item {
   public String toString() {
     //Mostrar nome do produto, quantidade, preco unitario, preco total, desconto, preco total com desconto
     StringBuilder sb = new StringBuilder();
-    sb.append("Nome do produto: " + this.nomeProduto + "\n");
-    sb.append("Quantidade: " + this.quantidade + "\n");
-    sb.append("Preco unitario: " + this.precoUnitario + "\n");
-    sb.append("Preco total: " + this.precoTotal + "\n");
-    sb.append("Desconto: " + this.desconto + "\n");
-    sb.append("Preco total com desconto: " + this.precoTotal + "\n");
+    
+    sb.append(String.format("%-14s", nomeProduto));
+    sb.append(String.format("%-14s", quantidade));
+    sb.append(String.format("%-14s", precoUnitario));
+    sb.append(String.format("%-14s", desconto));
+    sb.append(String.format("%-14s", precoTotal));
     return sb.toString();
   }
 

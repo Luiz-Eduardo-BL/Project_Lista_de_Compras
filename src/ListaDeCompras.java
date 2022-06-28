@@ -69,11 +69,16 @@ public class ListaDeCompras {
   }
   
   public String toString(){
-	  String str = "";
-	  for (Item item : listaDeItens) {
-		str += item + "\n";
+	  StringBuilder sb = new StringBuilder();
+	  sb.append(String.format("Item  %-14s%-14s%-14s%-14s%-14s\n", 
+			  "Descricao", "Qtde.", "Vl.Uni", "Desconto", "ValorTotal"));
+	  int cont = 0;
+	  for(Item item : listaDeItens) {
+		sb.append(String.format("[%03d] %s\n", cont, item));
+		cont++;
 	  }
-	  return str;
+	  
+	  return sb.toString();
   }
   
 }
