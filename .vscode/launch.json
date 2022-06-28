@@ -1,13 +1,12 @@
 {
   "configurations": [
-
     {
       "type": "java",
-      "name": "Launch JavaFxHello",
+      "name": "Launch HelloFx",
       "request": "launch",
-      "mainClass": "JavaFxHello",
+      "mainClass": "HelloFx",
       "vmArgs": "--module-path /home/lima/JavaFX/javafx-sdk-18.0.1/lib --add-modules javafx.controls,javafx.base,javafx.fxml,javafx.graphics,javafx.media,javafx.web",
-      "projectName": "JavaFX_f4dcc2c"
+      "projectName": "Project_Lista_de_Compras_304cef2"
     },
     {
       "type": "java",
