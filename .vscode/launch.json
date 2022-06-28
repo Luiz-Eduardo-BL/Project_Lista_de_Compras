@@ -1,0 +1,20 @@
+{
+  "configurations": [
+
+    {
+      "type": "java",
+      "name": "Launch JavaFxHello",
+      "request": "launch",
+      "mainClass": "JavaFxHello",
+      "vmArgs": "--module-path /home/lima/JavaFX/javafx-sdk-18.0.1/lib --add-modules javafx.controls,javafx.base,javafx.fxml,javafx.graphics,javafx.media,javafx.web",
+      "projectName": "JavaFX_f4dcc2c"
+    },
+    {
+      "type": "java",
+      "request": "attach",
+      "name": "Java",
+      "port": 5005,
+      "sourceRoots": []
+    }
+  ]
+}

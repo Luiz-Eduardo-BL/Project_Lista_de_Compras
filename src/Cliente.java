@@ -63,7 +63,7 @@ public class Cliente extends Usuario{
 					throw new MsgException("error: senha incorreta");
 			}
 		}
-		throw new MsgException("error: usuario incorreta");
+		throw new MsgException("error: usuario incorreto");
 		
 	}
 
