@@ -10,18 +10,20 @@ import java.util.List;
 public class Cliente extends Usuario{
 	private String cpf;
 	private String cartaoCredito;
-	private float limiteCartao;
+	private float limiteDisponivelCartao;
 	private ListaDeCompras listaDeCompras = new ListaDeCompras();
 	
 	public Cliente() {
 	}
 	
-	public Cliente(String nome, String cpf, String cartaoCredito, String nomeUser, String senha){
+	public Cliente(String nome, String cpf, String cartaoCredito, 
+			float limiteDisponivelCartao, String nomeUser, String senha){
 		 this.nome = nome;
 		 this.cpf = cpf;
 		 this.cartaoCredito = cartaoCredito;
 		 this.nomeUser = nomeUser;
-		 this.senha = senha;		 
+		 this.senha = senha;
+		 this.limiteDisponivelCartao = limiteDisponivelCartao;
 	}
 	
 	public boolean validaCpf(String nome) {
@@ -45,12 +47,12 @@ public class Cliente extends Usuario{
 		this.cartaoCredito = cartaoCredito;			
 		this.nomeUser = nomeUser;
 		this.senha = senha;
-		this.limiteCartao = 1000;
-		writeListCliente();
+		this.limiteDisponivelCartao = 1000;
+		registerClienteInList();
 	}
 	
 	public Cliente login(String nomeUser, String senha) {
-		List<Cliente> clientes = readList();
+		List<Cliente> clientes = readListClientes();
 		for (Cliente cliente : clientes) { 
 			if(cliente.getNomeUser().equals(nomeUser)) {
 				if(senha.equals(cliente.getSenha())) {
@@ -68,10 +70,20 @@ public class Cliente extends Usuario{
 
 
 	public void pagarCompra() {
-		if(limiteCartao < getListaDeCompras().getPrecoTotalLista()) 
+		if(limiteDisponivelCartao < getListaDeCompras().getPrecoTotalLista()) 
 			throw new MsgException("error: saldo insuficiente");
-		else
-			limiteCartao -= getListaDeCompras().getPrecoTotalLista();
+		else {
+			limiteDisponivelCartao -= getListaDeCompras().getPrecoTotalLista();
+			List<Cliente> clientes = readListClientes();
+			for (Cliente cliente : clientes) {
+				if(getNomeUser().equals(cliente.getNomeUser())) {
+					cliente.setLimiteDisponivelCartao(limiteDisponivelCartao);
+					break;
+				}
+			}
+			writeListClientes(clientes);
+			
+		}
 	}
 	
 	public String getCpf() {
@@ -85,9 +97,13 @@ public class Cliente extends Usuario{
 	public String getCartaoCredito() {
 		return cartaoCredito;
 	}
-
-  	public float getSaldoConta() {
-		return limiteCartao;
+	
+	public void setLimiteDisponivelCartao(float limiteDisponivelCartao) {
+		this.limiteDisponivelCartao = limiteDisponivelCartao;
+	}
+	
+  	public float getLimiteDisponivelCartao() {
+		return limiteDisponivelCartao;
   	}
   
 
@@ -107,45 +123,55 @@ public class Cliente extends Usuario{
 		builder.append(", cartaoCredito = ");
 		builder.append(cartaoCredito);
 		builder.append(", limiteCartao = ");
-		builder.append(limiteCartao);
+		builder.append(limiteDisponivelCartao);
 		builder.append("]");
 		return builder.toString();
 	}
 	
-	private void writeListCliente() {
+	private void registerClienteInList() {
 		try (
 				FileWriter clienteFile = new FileWriter("clientesFile.txt", true);
 				PrintWriter clienteWriter = new PrintWriter(clienteFile);
 			)
 		{   
 			clienteWriter.print(String.format("%s;%s;%s;%s;%s;%s\n",  getNome(), 
-					getCpf(), getCartaoCredito(), getNomeUser(), getSenha(), 
-					Float.toString(limiteCartao)));
+					getCpf(), getCartaoCredito(), Float.toString(limiteDisponivelCartao),
+					getNomeUser(), getSenha()
+					));
 		}
 		catch(IOException e) {
 			System.out.println("There was a problem writing the file");
 		}
-}
+	}
 	
-	public List<Cliente> readList() {
+	private void writeListClientes(List<Cliente> clientes) {
+		try ( 	FileWriter clienteFile = new FileWriter("clientesFile.txt");
+				PrintWriter clienteWriter = new PrintWriter(clienteFile);)
+		{   
+			for (Cliente cliente : clientes) 
+				clienteWriter.print(String.format("%s;%s;%s;%s;%s;%s\n",  
+						cliente.getNome(), cliente.getCpf(), cliente.getCartaoCredito(), 
+						Float.toString(cliente.getLimiteDisponivelCartao()), 
+						cliente.getNomeUser(), cliente.getSenha()));
+		}
+		catch(IOException e) {
+			System.out.println("There was a problem writing the file");
+		}
+	}
+	
+	public List<Cliente> readListClientes() {
 		List<Cliente> clientes = new ArrayList<Cliente>();
-        // use try-with-resources to ensure file is closed safely
         try (
-                /* create a FileReader object that handles the low-level 
-                details of reading the list from the "Cars.txt" file */
                 FileReader clientesFile = new FileReader("clientesFile.txt");
-                /* now create a BufferedReader object to wrap around carFile
-                this allows us to user high-level functions such as readLine */
                 BufferedReader clienteStream = new BufferedReader(clientesFile);
             )
         {
-           	// read the first line of the file
         	String aux = clienteStream.readLine();
             String userFields[] = aux != null? aux.split(";") : null;
             while(userFields != null) { // a null string indicates end of file
-            	
             	clientes.add(new Cliente(userFields[0], userFields[1], 
-            			userFields[2], userFields[3], userFields[4]));
+            							 userFields[2], Float.parseFloat(userFields[3]), 
+            							 userFields[4], userFields[5]));
             	aux = clienteStream.readLine();
             	userFields = aux != null? aux.split(";") : null;
             }

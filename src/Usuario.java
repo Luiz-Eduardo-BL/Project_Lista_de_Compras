@@ -11,7 +11,6 @@ abstract class Usuario {
 
 	}
 	
-	
 	public boolean verificarLogin() {
 		if(nomeUser.equals(nome) && senha.equals(senha)) {
 			statusLogin = true;
