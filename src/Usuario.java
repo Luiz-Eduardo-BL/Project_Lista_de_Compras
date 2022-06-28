@@ -11,12 +11,6 @@ abstract class Usuario {
 
 	}
 	
-	/*public void registrar(String nome, String nomeUsuario, String senha) {
-		this.nome = nome;
-		this.nomeUser = nomeUsuario;
-		this.senha = senha;
-		this.dataRegistro = new Date();
-	}*/
 	
 	public boolean verificarLogin() {
 		if(nomeUser.equals(nome) && senha.equals(senha)) {
@@ -86,12 +80,12 @@ abstract class Usuario {
 		this.statusLogin = statusLogin;
 	}
 
-	public Date getDataRegistro() {
-		return dataRegistro;
-	}
-
-	public void setDataRegistro(Date dataRegistro) {
-		this.dataRegistro = dataRegistro;
-	}
+//	public Date getDataRegistro() {
+//		return dataRegistro;
+//	}
+//
+//	public void setDataRegistro(Date dataRegistro) {
+//		this.dataRegistro = dataRegistro;
+//	}
 
 }	

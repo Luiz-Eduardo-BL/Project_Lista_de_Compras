@@ -8,17 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente extends Usuario{
-	protected String cpf;
+	private String cpf;
 	private String cartaoCredito;
-	private float saldoConta;
+	private float limiteCartao;
+	private ListaDeCompras listaDeCompras = new ListaDeCompras();
 	
 	public Cliente() {
 	}
 	
-	public Cliente(String nome, String nomeUser, String senha){
+	public Cliente(String nome, String cpf, String cartaoCredito, String nomeUser, String senha){
 		 this.nome = nome;
+		 this.cpf = cpf;
+		 this.cartaoCredito = cartaoCredito;
 		 this.nomeUser = nomeUser;
-		 this.senha = senha;
+		 this.senha = senha;		 
 	}
 	
 	public boolean validaCpf(String nome) {
@@ -35,11 +38,15 @@ public class Cliente extends Usuario{
     		throw new MsgException("error: Cartao de credito invalido");
 	}
 
-	public void registrar(String nome, String nomeUser, String senha) {
+	public void registrar(String nome, String cpf, String cartaoCredito, 
+			String nomeUser, String senha) {
 		this.nome = nome;
+		this.cpf = cpf;
+		this.cartaoCredito = cartaoCredito;			
 		this.nomeUser = nomeUser;
 		this.senha = senha;
-		writeList();
+		this.limiteCartao = 1000;
+		writeListCliente();
 	}
 	
 	public Cliente login(String nomeUser, String senha) {
@@ -58,20 +65,62 @@ public class Cliente extends Usuario{
 		
 	}
 
-	private void writeList() {
-		// use try-with-resources to ensure file is closed safely
+
+
+	public void pagarCompra() {
+		if(limiteCartao < getListaDeCompras().getPrecoTotalLista()) 
+			throw new MsgException("error: saldo insuficiente");
+		else
+			limiteCartao -= getListaDeCompras().getPrecoTotalLista();
+	}
+	
+	public String getCpf() {
+		return cpf;
+	}
+	
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getCartaoCredito() {
+		return cartaoCredito;
+	}
+
+  	public float getSaldoConta() {
+		return limiteCartao;
+  	}
+  
+
+  	public ListaDeCompras getListaDeCompras() {
+		return listaDeCompras;
+	}
+
+	public void setListaDeCompras(ListaDeCompras listaDeCompras) {
+		this.listaDeCompras = listaDeCompras;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Cliente [cpf = ");
+		builder.append(cpf);
+		builder.append(", cartaoCredito = ");
+		builder.append(cartaoCredito);
+		builder.append(", limiteCartao = ");
+		builder.append(limiteCartao);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	private void writeListCliente() {
 		try (
-				/* create a FileWriter object, carFile, that handles
-				the low-level details of writing the list to a file 
-				which we have called "Cars.txt" */
 				FileWriter clienteFile = new FileWriter("clientesFile.txt", true);
-				/* now create a PrintWriter object to wrap around carFile;
-				this allows us to user high-level functions such as println */
 				PrintWriter clienteWriter = new PrintWriter(clienteFile);
 			)
 		{   
-			clienteWriter.print(String.format("%s;%s;%s;\n",  getNome(), 
-					getNomeUser(), getSenha()));
+			clienteWriter.print(String.format("%s;%s;%s;%s;%s;%s\n",  getNome(), 
+					getCpf(), getCartaoCredito(), getNomeUser(), getSenha(), 
+					Float.toString(limiteCartao)));
 		}
 		catch(IOException e) {
 			System.out.println("There was a problem writing the file");
@@ -80,11 +129,6 @@ public class Cliente extends Usuario{
 	
 	public List<Cliente> readList() {
 		List<Cliente> clientes = new ArrayList<Cliente>();
-        String nome;
-        String nomeUser;
-        String senha;
-        //String dataRegistro;
-
         // use try-with-resources to ensure file is closed safely
         try (
                 /* create a FileReader object that handles the low-level 
@@ -98,12 +142,10 @@ public class Cliente extends Usuario{
            	// read the first line of the file
         	String aux = clienteStream.readLine();
             String userFields[] = aux != null? aux.split(";") : null;
-            //dataRegistro = aux[3];
             while(userFields != null) { // a null string indicates end of file
-            	nome = userFields[0];
-                nomeUser = userFields[1];
-                senha = userFields[2]; 
-            	clientes.add(new Cliente(nome, nomeUser, senha));
+            	
+            	clientes.add(new Cliente(userFields[0], userFields[1], 
+            			userFields[2], userFields[3], userFields[4]));
             	aux = clienteStream.readLine();
             	userFields = aux != null? aux.split(";") : null;
             }
@@ -117,29 +159,4 @@ public class Cliente extends Usuario{
         
         return clientes;
     }
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-  public String getCartaoCredito() {
-		return cartaoCredito;
-  }
-
-  public float getSaldoConta() {
-		return saldoConta;
-  }
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Cliente [cpf = ");
-		builder.append(cpf);
-		builder.append(", cartaoCredito = ");
-		builder.append(cartaoCredito);
-		builder.append(", saldoConta = ");
-		builder.append(saldoConta);
-		builder.append("]");
-		return builder.toString();
-	}
 }

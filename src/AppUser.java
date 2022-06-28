@@ -22,7 +22,6 @@ public class AppUser {
 	}
 	
 	public int selecionaOperacaoInicial() {
-		int operacao = 0;
 		operacao = Integer.parseInt(receiveDate());
 
 		switch (operacao) {
@@ -33,12 +32,15 @@ public class AppUser {
 		case 1:
 			System.out.println("Digite o nome do cliente: ");
 			String nome = receiveDate();
-			System.out.println("Digite o Id do usuario: ");
+			System.out.println("Digite o cpf do cliente: ");
+			String cpf = receiveDate();
+			System.out.println("Digite o cartao do cliente: ");
+			String cartaoCredito = receiveDate();
+			System.out.println("Digite o user do cliente: ");
 			String nomeUser = receiveDate();
 			System.out.println("Digite a senha do cliente: ");			
 			String senha = receiveDate();
-			
-			cliente.registrar(nome, nomeUser, senha);
+			cliente.registrar(nome, cpf, cartaoCredito, nomeUser, senha);
 			break;
 			
 		case 2:
@@ -63,9 +65,9 @@ public class AppUser {
 		System.out.println("1. Adicionar item");
 		System.out.println("2. Remover item");
 		System.out.println("3. Atualizar quantidade de um produto");
-		System.out.println("4. Efetuar");
-		System.out.println("5. Cancelar");
-		System.out.println("6. Pagar");
+		System.out.println("4. Cancelar");
+		System.out.println("5. Pagar");
+		System.out.println("7. Mostrar itens do carrinho");
 		System.out.println("-------------------------------------------------------------------------");
 		selecionaOperacaoCliente();
 	}
@@ -77,39 +79,33 @@ public class AppUser {
 			cliente.logout();
 			operacao = -1;
 			break;
-		//Apenas o esqueleto, metodo precisa ser implementado
 		case 1:
 			System.out.println("Digite produto que quer adicionar ao carrinho: ");
 			String nomeProduto = receiveDate();			
 			System.out.println("Digite a quantidade: ");
-			String quantidade = receiveDate();
-			//cliente.listaDeCompras.adicionarItem(nomeProduto, quantidade);
+			int quantidade = Integer.parseInt(receiveDate());
+			cliente.getListaDeCompras().adicionarItem(nomeProduto, quantidade);
 			break;		
-		//Apenas o esqueleto, metodo precisa ser implementado
 		case 2:
 			System.out.println("Digite produto que quer remover do carrinho: ");
 			nomeProduto = receiveDate();			
-			//cliente.listaDeCompras.removerItem(nomeProduto);
+			cliente.getListaDeCompras().removerItem(nomeProduto);
 			break;
-		//Apenas o esqueleto, metodo precisa ser implementado	
 		case 3:
 			System.out.println("Digite o nome do produto que deseja atualizar a quantidade: ");
 			nomeProduto = receiveDate();			
 			System.out.println("Digite a quantidade que quer atualizar: ");
-			quantidade = receiveDate();
-			//cliente.listaDeCompras.atualizarQuantidadeItem(nomeProduto, quantidade);
+			quantidade = Integer.parseInt(receiveDate());
+			cliente.getListaDeCompras().atualizarQuantidade(nomeProduto, quantidade);
 			break;
-		//Apenas o esqueleto, metodo precisa ser implementado	
 		case 4:
-			//cliente.listaDeCompras.efetuar();
+			cliente.getListaDeCompras().cancelarCompra();
 			break;
-		//Apenas o esqueleto, metodo precisa ser implementado	
 		case 5:
-			//cliente.listaDeCompras.cancelar();
+			cliente.pagarCompra();
 			break;
-		//Apenas o esqueleto, metodo precisa ser implementado	
-		case 6:
-			//cliente.listaDeCompras.pagar();
+		case 7:
+			System.out.println(cliente.getListaDeCompras().toString()); 
 			break;	
 		default:
 			System.out.println("Operacao invalida, tente outra.");

@@ -1,18 +1,31 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Item {
   private int numProduto;
   private String nomeProduto;
-  private int quantidade;
   private float precoUnitario;
+  private int quantidade;
   private float precoTotal;
   private float desconto;
 
-  public Item(int numProduto, String nomeProduto, int quantidade, float precoUnitario, float precoTotal, float desconto) {
+  public Item() {
+	  
+  }
+  
+  public Item(int numProduto, String nomeProduto, float precoUnitario, int quantidade) {
     this.numProduto = numProduto;
     this.nomeProduto = nomeProduto;
     this.quantidade = quantidade;
     this.precoUnitario = precoUnitario;
-    this.precoTotal = precoTotal;
-    this.desconto = desconto;
+    calcularPrecoTotal();
+    calcularDesconto();
   }
 
   public Item(String nomeCliente, String nomeProduto2, int quantidade2) {
@@ -90,6 +103,68 @@ public class Item {
     this.precoTotal = this.precoTotal - this.desconto;
   }
 
+  static List<Item> readListItensDeposito() {
+	  List<Item> itens = new ArrayList<Item>();
+      // use try-with-resources to ensure file is closed safely
+      try (
+              /* create a FileReader object that handles the low-level 
+              details of reading the list from the "Cars.txt" file */
+              FileReader itensFile = new FileReader("itensDepositoFile.txt");
+              /* now create a BufferedReader object to wrap around carFile
+              this allows us to user high-level functions such as readLine */
+              BufferedReader itensStream = new BufferedReader(itensFile);
+          )
+      {
+          // read the first line of the file
+    	  String aux = itensStream.readLine();
+          String itensFields[] = aux != null? aux.split(";") : null;
+          while(itensFields != null) { // a null string indicates end of file
+          	itens.add(new Item(Integer.parseInt(itensFields[0]), itensFields[1], 
+          			Float.parseFloat(itensFields[2]), Integer.parseInt(itensFields[3])));
+          	aux = itensStream.readLine();
+          	itensFields = aux != null? aux.split(";") : null;
+          }
+      }
+      catch(FileNotFoundException e) {
+          System.out.println("\nerror: No file was read");
+      }
+      catch(IOException e) {
+          System.out.println("\nerror: There was a problem reading the file");
+      }
+      
+      return itens;
+  }
+  
+  static void writeList(List<Item> itensDeposito) {
+		// use try-with-resources to ensure file is closed safely
+		try (
+				/* create a FileWriter object, carFile, that handles
+				the low-level details of writing the list to a file 
+				which we have called "Cars.txt" */
+				FileWriter itensFile = new FileWriter("itensDepositoFile.txt");
+				/* now create a PrintWriter object to wrap around carFile;
+				this allows us to user high-level functions such as println */
+				PrintWriter itemWriter = new PrintWriter(itensFile);
+			)
+		{   
+			String numProduto;
+			String nomeProduto;
+			String precoUnitario;
+			String quantidade;
+			for (Item item : itensDeposito) {
+				numProduto = Integer.toString(item.getNumProduto());
+				nomeProduto = item.getNomeProduto();
+				precoUnitario = Float.toString(item.getPrecoUnitario());
+				quantidade = Integer.toString(item.getQuantidade());
+				itemWriter.print(String.format("%s;%s;%s;%s\n", 
+						numProduto, nomeProduto, precoUnitario, quantidade));
+			}
+			
+		}
+		catch(IOException e) {
+			System.out.println("There was a problem writing the file");
+		}
+  }
   @Override
   public String toString() {
     //Mostrar nome do produto, quantidade, preco unitario, preco total, desconto, preco total com desconto

@@ -1,73 +1,79 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListaDeCompras {
-  //listaDeCompras é uma lista de itens
-  private List<Item> listaDeCompras;
-  private int numListaDeCompras;
-  private int numProduto;
-  private int quantidade;
-
-  public List<Item> getListaDeCompras() {
-    return listaDeCompras;
-  }
-  public void setListaDeCompras(List<Item> listaDeCompras) {
-    this.listaDeCompras = listaDeCompras;
-  }
-  public int getNumListaDeCompras() {
-    return numListaDeCompras;
-  }
-  public void setNumListaDeCompras(int numListaDeCompras) {
-    this.numListaDeCompras = numListaDeCompras;
-  }
-  public int getNumProduto() {
-    return numProduto;
-  }
-  public void setNumProduto(int numProduto) {
-    this.numProduto = numProduto;
-  }
-  public int getQuantidade() {
-    return quantidade;
-  }
-  public void setQuantidade(int quantidade) {
-    this.quantidade = quantidade;
-  }
-
-  public ListaDeCompras(List<Item> listaDeCompras, int numListaDeCompras, int numProduto, int quantidade) {
-    this.listaDeCompras = listaDeCompras;
-    this.numListaDeCompras = numListaDeCompras;
-    this.numProduto = numProduto;
-    this.quantidade = quantidade;
-  }
+	//listaDeItens sao uma lista de itens
+	private List<Item> listaDeItens = new ArrayList<Item>();
+	private float precoTotalLista;
+	private static int numListaDeCompras;
   
-  public void adicionarItem(Item item) {
-    listaDeCompras.add(item);
+	public ListaDeCompras() {
+		numListaDeCompras++;
+	}
+   
+  public String adicionarItem(String nomeProduto, int quantidade) {
+	 List<Item> listaDeItensDesposito = Item.readListItensDeposito();
+	 for (Item itemDeposito : listaDeItensDesposito) {
+		 if(nomeProduto.equals(itemDeposito.getNomeProduto())) {
+			 Item itemParaCarrinho = new Item(itemDeposito.getNumProduto(), 
+					 						  itemDeposito.getNomeProduto(), 
+					 						  itemDeposito.getPrecoUnitario(), 
+					 						  quantidade);
+			 itemDeposito.setQuantidade(itemDeposito.getQuantidade()-quantidade);
+			 listaDeItens.add(itemParaCarrinho);
+			 Item.writeList(listaDeItensDesposito);
+			 return "Item adicionado com sucesso";
+		 }	 
+	 }
+	 throw new MsgException("Produto nao esta no nosso deposito");  
   }
 
-  public void removerItem(Item item) {
-    listaDeCompras.remove(item);
+  	public String removerItem(String nomeProduto) {
+  		for(int i = 0; i < listaDeItens.size(); i++) {
+  			if(nomeProduto.equals(listaDeItens.get(i).getNomeProduto())) {
+  				listaDeItens.remove(i);
+  				return "Item removido com sucesso";
+  			}
+  		}		
+  				 
+		throw new MsgException("Produto nao esta no carrinho");
   }
 
-  public void atualizarQuantidade(Item item, int quantidade) {
-    item.setQuantidade(quantidade);
+  	public void atualizarQuantidade(String nomeProduto, int quantidade) {
+  		for(int i = 0; i < listaDeItens.size(); i++) 
+  			if(nomeProduto.equals(listaDeItens.get(i).getNomeProduto())) 
+  				listaDeItens.get(i).setQuantidade(quantidade);
+  		
+		throw new MsgException("Produto nao esta no carrinho");
+  	}
+
+  	public void efetuarCompra() {
+  		for (Item item : listaDeItens) {
+  			item.setPrecoTotal(item.getPrecoUnitario() * item.getQuantidade());
+  		}
+  	}
+
+  	public void cancelarCompra() {
+  		//cancela a compra e remove os itens da listaDeCompras
+  		listaDeItens.clear();
   }
 
-  public void efetuarCompra() {
-    for (Item item : listaDeCompras) {
-      item.setPrecoTotal(item.getPrecoUnitario() * item.getQuantidade());
-    }
-  }
-
-  public void cancelarCompra() {
-    //cancela a compra e remove os itens da listaDeCompras
-    listaDeCompras.clear();
-  }
-
-  public void pagarCompra() {
+  public float getPrecoTotalLista() {
     //paga a compra, ve o cartao do cliente, se tiver saldo paga, 
-    if(listaDeCompras.size() > 0) {
-      for (Item item : listaDeCompras) {
-        item.setPrecoTotal(item.getPrecoTotal() - (item.getPrecoTotal() * item.getDesconto()));
+    if(listaDeItens.size() > 0) {
+      for (Item item : listaDeItens) {
+    	  precoTotalLista += item.getPrecoTotal();
       }
     }
+    return precoTotalLista;
   }
+  
+  public String toString(){
+	  String str = "";
+	  for (Item item : listaDeItens) {
+		str += item + "\n";
+	  }
+	  return str;
+  }
+  
 }
