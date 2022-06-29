@@ -169,12 +169,26 @@ public class Item {
   public String toString() {
     //Mostrar nome do produto, quantidade, preco unitario, preco total, desconto, preco total com desconto
     StringBuilder sb = new StringBuilder();
+<<<<<<< HEAD
     
     sb.append(String.format("%-14s", nomeProduto));
     sb.append(String.format("%-14s", quantidade));
     sb.append(String.format("%-14s", precoUnitario));
     sb.append(String.format("%-14s", desconto));
     sb.append(String.format("%-14s", precoTotal));
+=======
+    // sb.append("Nome do produto: " + this.nomeProduto + "\n");
+    // sb.append("Quantidade: " + this.quantidade + "\n");
+    // //preco unitario com 2 casas decimais
+    // sb.append("Preco unitario: " + String.format("%.2f", this.precoUnitario) + "\n");
+    // //Preco total com duas casas decimais
+    // sb.append("Preco total: " + String.format("%.2f", this.precoTotal) + "\n");
+    // //Desconto com duas casas decimais
+    // sb.append("Desconto: " + String.format("%.2f", this.desconto) + "\n");
+    // //Preco total com desconto com duas casas decimais
+    // sb.append("Preco total com desconto: " + String.format("%.2f", this.precoTotal - this.desconto) + "\n");
+
+>>>>>>> 551fb84 (Auteraçoes JavaFX e Scene Biulder)
     return sb.toString();
   }
 
