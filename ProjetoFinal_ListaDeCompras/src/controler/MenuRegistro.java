@@ -40,7 +40,7 @@ public class MenuRegistro {
     				textFieldCreditCard.getText(),
     				textFieldUser.getText(),
     				textFieldPassword.getText());
-    		ServicesAlerts.Alerts(AlertType.NONE, "Success", null, "successfully registered");
+    		ServicesAlerts.Alerts(AlertType.INFORMATION, "Success", null, "successfully registered");
     		Main.changeTela(telas.menuInicial);
     	}
     	catch(MsgException me) {

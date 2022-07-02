@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-
 /* 
  * system inclusions
  */
@@ -17,35 +16,45 @@ import model.Cliente;
 
 public class ServicesCliente {
 	
-	public static boolean validaUser(String nome) {
-		if(nome.matches("[A-Z[a-z[0-9[[-._]]]]]*"))
+	public static boolean validaUser(String str) {
+		if(str.endsWith("") || str.isEmpty())
+			throw new MsgException("error: preencha todos os campos");
+		else if(str.matches("[A-Z[a-z[0-9[[-._]]]]]*"))
     		return true;
     	else
     		throw new MsgException("error: nome de usuario invalido");
 	}
 	
-	public static boolean validaSenha(String nome) {
-		if(nome.matches("[A-Z[a-z[0-9[[-._]]]]]*"))
+	public static boolean validaSenha(String str) {
+		if(str.endsWith("") || str.isEmpty())
+			throw new MsgException("error: preencha todos os campos");
+		if(str.matches("[A-Z[a-z[0-9[[-._]]]]]*"))
     		return true;
     	else
     		throw new MsgException("error: senha invalida");
 	}
 	
 	public static boolean validaNome(String str) {
-		if(str.matches("[A-Z[a-z]]*"))
+		if(str.endsWith("") || str.isEmpty())
+			throw new MsgException("error: preencha todos os campos");
+		else if(str.matches("[A-Z[a-z]]*"))
     		return true;
     	else
     		throw new MsgException("error: nome invalido");
 	}
 	
 	public static boolean validaCpf(String str) {
-		if(str.matches("[0-9]*"))
+		if(str.endsWith("") || str.isEmpty())
+			throw new MsgException("error: preencha todos os campos");
+		else if(str.matches("[0-9]*"))
     		return true;
     	else
     		throw new MsgException("error: CPF invalido");
 	}
 	
 	public static boolean validaCartaoCredito(String str) {
+		if(str.endsWith("") || str.isEmpty())
+			throw new MsgException("error: preencha todos os campos");
 		if(str.matches("[0-9]*"))
     		return true;
     	else
@@ -54,6 +63,11 @@ public class ServicesCliente {
 	
 	public static String registrar(String nome, String cpf, String cartaoCredito, 
 			String nomeUser, String senha) {
+		validaNome(nome);
+		validaCpf(cpf);
+		validaCartaoCredito(cartaoCredito);
+		validaUser(nomeUser);
+		validaSenha(senha);
 		registerClienteInList(new Cliente(nome, cpf, cartaoCredito, (float)1000.0, nomeUser, senha));
 		return "Cliente registrado com sucesso";
 	}
@@ -78,6 +92,7 @@ public class ServicesCliente {
 	public static void logout(Cliente cliente) {
 		cliente.setStatusLogin(false);
 	}
+	
 	
 	public static String pagarCompra(Cliente cliente) {
 		if(cliente.getLimiteDisponivelCartao() < cliente.getListaDeCompras().getPrecoTotalLista()) 

@@ -11,11 +11,11 @@
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Label>
-      <Button fx:id="btnAdicionarProduto" layoutX="14.0" layoutY="78.0" mnemonicParsing="false" onAction="#btnClickAdicionarProduto" text="Adicionar produto" />
-      <Button fx:id="btnRemoverProduto" layoutX="14.0" layoutY="111.0" mnemonicParsing="false" onAction="#btnClickRemoverProduto" text="Remover produto" />
-      <Button fx:id="btnAtualizarProduto" layoutX="14.0" layoutY="143.0" mnemonicParsing="false" onAction="#btnClickAtualizarProduto" text="Atualizar quantidade de um produto" />
-      <Button fx:id="btnLogout" layoutX="273.0" layoutY="295.0" mnemonicParsing="false" onAction="#btnClickLogout" text="Logout" />
-      <Button fx:id="btnMostrarProdutos" layoutX="14.0" layoutY="209.0" mnemonicParsing="false" onAction="#btnClickMostrarProdutos" text="Cancelar" />
-      <Button fx:id="btnMostrarProdutos" layoutX="14.0" layoutY="175.0" mnemonicParsing="false" onAction="#btnClickMostrarProdutos" text="Mostrar itens da carrinho" />
+      <Button layoutX="14.0" layoutY="78.0" mnemonicParsing="false" onAction="#btnClickAdicionarProduto" text="Adicionar produto" />
+      <Button layoutX="14.0" layoutY="111.0" mnemonicParsing="false" onAction="#btnClickRemoverProduto" text="Remover produto" />
+      <Button layoutX="14.0" layoutY="143.0" mnemonicParsing="false" onAction="#btnClickAtualizarProduto" text="Atualizar quantidade de um produto" />
+      <Button layoutX="273.0" layoutY="295.0" mnemonicParsing="false" onAction="#btnClickLogout" text="Logout" />
+      <Button layoutX="14.0" layoutY="209.0" mnemonicParsing="false" onAction="#btnClickCancelarProdutos" text="Cancelar" />
+      <Button layoutX="14.0" layoutY="175.0" mnemonicParsing="false" onAction="#btnClickMostrarProdutos" text="Mostrar itens da carrinho" />
    </children>
 </AnchorPane>
