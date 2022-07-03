@@ -13,15 +13,16 @@
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Label>
-      <Button fx:id="bntRegister" layoutX="51.0" layoutY="269.0" mnemonicParsing="false" onAction="#btnClickRegister" text="Registre-se" />
-      <TextField fx:id="textFieldUser" layoutX="14.0" layoutY="175.0" promptText="Usuario" />
-      <TextField fx:id="textFieldName" layoutX="14.0" layoutY="82.0" promptText="Nome" />
-      <TextField fx:id="textFieldCpf" layoutX="14.0" layoutY="113.0" promptText="CPF" />
-      <TextField fx:id="textFieldCreditCard" layoutX="14.0" layoutY="144.0" promptText="Cartao de credito">
+      <Button layoutX="225.0" layoutY="246.0" mnemonicParsing="false" onAction="#btnClickRegister" text="Registre-se" />
+      <TextField fx:id="textFieldUser" layoutX="188.0" layoutY="171.0" promptText="Usuario" />
+      <TextField fx:id="textFieldName" layoutX="188.0" layoutY="78.0" promptText="Nome" />
+      <TextField fx:id="textFieldCpf" layoutX="188.0" layoutY="109.0" promptText="CPF" />
+      <TextField fx:id="textFieldCreditCard" layoutX="188.0" layoutY="140.0" promptText="Cartao de credito">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </TextField>
-      <TextField fx:id="textFieldPassword" layoutX="14.0" layoutY="207.0" promptText="Senha" />
+      <TextField fx:id="textFieldPassword" layoutX="188.0" layoutY="203.0" promptText="Senha" />
+      <Button layoutX="26.0" layoutY="333.0" mnemonicParsing="false" onAction="#btnClickBack" text="Voltar" />
    </children>
 </AnchorPane>

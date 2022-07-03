@@ -19,14 +19,14 @@ public class Main extends Application {
 		menuInicial, 
 		menuCliente, 
 		menuRegistro,
-		addProduto,
-		attProduto,
-		rmProduto,
-		showProdutos
+		telaAddProduto,
+		telaAttProduto,
+		telaRmProduto,
+		telaShowProdutos
 	}
 	
 	private static Scene sceneMenuInicial, sceneMenuCliente, sceneMenuRegistro,
-						 sceneAddProduto, sceneAttProduto, sceneRmProduto, sceneShowProdutos;
+						 sceneTelaAddProduto, sceneTelaAttProduto, sceneTelaRmProduto, sceneTelaShowProdutos;
 	private static Stage primaryStage;
 	
 	public static void changeTela(telas menu) {
@@ -40,17 +40,17 @@ public class Main extends Application {
 		case menuRegistro:
 			primaryStage.setScene(sceneMenuRegistro);
 			break;
-		case addProduto:
-			primaryStage.setScene(sceneAddProduto);
+		case telaAddProduto:
+			primaryStage.setScene(sceneTelaAddProduto);
 			break;
-		case attProduto:
-			primaryStage.setScene(sceneAttProduto);
+		case telaAttProduto:
+			primaryStage.setScene(sceneTelaAttProduto);
 			break;
-		case rmProduto:
-			primaryStage.setScene(sceneRmProduto);
+		case telaRmProduto:
+			primaryStage.setScene(sceneTelaRmProduto);
 			break;
-		case showProdutos:
-			primaryStage.setScene(sceneShowProdutos);
+		case telaShowProdutos:
+			primaryStage.setScene(sceneTelaShowProdutos);
 			break;
 		default:
 			primaryStage.setScene(sceneMenuInicial);
@@ -67,23 +67,23 @@ public class Main extends Application {
 					getClass().getResource("../view/MenuCliente.fxml"));
 			Parent parentMenuRegistro = FXMLLoader.load(
 					getClass().getResource("../view/MenuRegistro.fxml"));
-			Parent parentAddProduto = FXMLLoader.load(
-					getClass().getResource("../view/telasMenuCliente/AddProduto.fxml"));
-			Parent parentAttProduto = FXMLLoader.load(
-					getClass().getResource("../view/telasMenuCliente/AttProduto.fxml"));
-			Parent parentRmProduto = FXMLLoader.load(
-					getClass().getResource("../view/telasMenuCliente/RmProduto.fxml"));
-			Parent parentShowProdutos = FXMLLoader.load(
-					getClass().getResource("../view/telasMenuCliente/ShowProdutos.fxml"));
+			Parent parentTelaAddProduto = FXMLLoader.load(
+					getClass().getResource("../view/telasMenuCliente/TelaAddProduto.fxml"));
+			Parent parentTelaAttProduto = FXMLLoader.load(
+					getClass().getResource("../view/telasMenuCliente/TelaAttProduto.fxml"));
+			Parent parentTelaRmProduto = FXMLLoader.load(
+					getClass().getResource("../view/telasMenuCliente/TelaRmProduto.fxml"));
+			Parent parentTelaShowProdutos = FXMLLoader.load(
+					getClass().getResource("../view/telasMenuCliente/TelaShowProdutos.fxml"));
 			
 			
 			sceneMenuInicial = new Scene(parentMenuInicial, 600, 400);
 			sceneMenuCliente = new Scene(parentMenuCliente, 600, 400);
 			sceneMenuRegistro = new Scene(parentMenuRegistro, 600, 400);
-			sceneAddProduto = new Scene(parentAddProduto, 600, 400);
-			sceneAttProduto = new Scene(parentAttProduto, 600, 400);
-			sceneRmProduto = new Scene(parentRmProduto, 600, 400);
-			sceneShowProdutos = new Scene(parentShowProdutos, 600, 400);
+			sceneTelaAddProduto = new Scene(parentTelaAddProduto, 600, 400);
+			sceneTelaAttProduto = new Scene(parentTelaAttProduto, 600, 400);
+			sceneTelaRmProduto = new Scene(parentTelaRmProduto, 600, 400);
+			sceneTelaShowProdutos = new Scene(parentTelaShowProdutos, 600, 400);
 			
 			primaryStage.setTitle("Lista de compras");
 			primaryStage.setResizable(false);
@@ -102,4 +102,6 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
+	
 }

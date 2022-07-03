@@ -4,17 +4,16 @@ import application.Main;
 import application.Main.telas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+/* 
+ * system inclusions
+ */
 import services.MsgException;
 import services.ServicesAlerts;
 import services.ServicesCliente;
 
 public class MenuRegistro {
-
-    @FXML
-    private Button bntRegister;
 
     @FXML
     private TextField textFieldCpf;
@@ -47,4 +46,10 @@ public class MenuRegistro {
     		ServicesAlerts.Alerts(AlertType.ERROR, "Error", null, me.getMessage());
     	}
     }
+    
+    @FXML
+    void btnClickBack(ActionEvent event) {
+    	Main.changeTela(telas.menuInicial);
+    }
+    
 }

@@ -1,21 +1,37 @@
-package controler;
+package controler.controlerMenuCliente;
 
 import application.Main;
 import application.Main.telas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import services.ServicesCliente;
 
-public class MenuCliente {
+public class TelaShowProdutos {
 
+    @FXML
+    private Button btnAdicionarProduto;
+
+    @FXML
+    private Button btnAtualizarProduto;
+
+    @FXML
+    private Button btnLogout;
+
+    @FXML
+    private Button btnMostrarProdutos;
+
+    @FXML
+    private Button btnRemoverProduto;
 
     @FXML
     void btnClickAdicionarProduto(ActionEvent event) {
-    	Main.changeTela(telas.telaAddProduto);
+
     }
 
     @FXML
     void btnClickAtualizarProduto(ActionEvent event) {
-    	Main.changeTela(telas.telaAttProduto);
+
     }
 
     @FXML
@@ -25,17 +41,12 @@ public class MenuCliente {
 
     @FXML
     void btnClickMostrarProdutos(ActionEvent event) {
-    	Main.changeTela(telas.telaShowProdutos);
+
     }
 
     @FXML
     void btnClickRemoverProduto(ActionEvent event) {
-    	Main.changeTela(telas.telaRmProduto);
-    }
-    
-    @FXML
-    void btnClickCancelarProdutos(ActionEvent event) {
-    	Main.cliente.getListaDeCompras().cancelarCompra();
+
     }
 
 }
