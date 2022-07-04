@@ -73,7 +73,6 @@ public class ServicesCliente {
 	}
 	
 	public static Cliente login(String nomeUser, String senha) {
-		//if(nomeUser)
 		List<Cliente> clientes = readListClientes();
 		for (Cliente cliente : clientes) { 
 			if(cliente.getNomeUser().equals(nomeUser)) {
@@ -97,15 +96,19 @@ public class ServicesCliente {
 	public static String pagarCompra(Cliente cliente) {
 		if(cliente.getLimiteDisponivelCartao() < cliente.getListaDeCompras().getPrecoTotalLista()) 
 			throw new MsgException("error: saldo insuficiente");
+		else if(cliente.getListaDeCompras().getPrecoTotalLista() == 0)
+			throw new MsgException("error: nao ha produtos no carrinho");
 		else {
-			cliente.setLimiteDisponivelCartao(cliente.getListaDeCompras().getPrecoTotalLista()); 
+			cliente.setLimiteDisponivelCartao(cliente.getLimiteDisponivelCartao() - 
+					cliente.getListaDeCompras().getPrecoTotalLista()); 
 			List<Cliente> clientes = readListClientes();
 			for(Cliente clienteLista : clientes) {
 				if(cliente.getNomeUser().equals(clienteLista.getNomeUser())) {
-					clienteLista.setLimiteDisponivelCartao(cliente.getLimiteDisponivelCartao());					
+					clienteLista.setLimiteDisponivelCartao(cliente.getLimiteDisponivelCartao() );					
 					break;
 				}
 			}
+			cliente.getListaDeCompras().cancelarCompra();
 			writeListClientes(clientes);
 			return "Conta paga com sucesso";
 		}

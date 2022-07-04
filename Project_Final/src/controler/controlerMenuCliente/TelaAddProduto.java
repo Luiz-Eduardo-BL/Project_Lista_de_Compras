@@ -5,6 +5,9 @@ import application.Main.telas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
+import services.MsgException;
+import services.ServicesAlerts;
 
 public class TelaAddProduto {
 
@@ -16,9 +19,16 @@ public class TelaAddProduto {
 
     @FXML
     void btnClickConfirm(ActionEvent event) {
-    	Main.cliente.getListaDeCompras().adicionarItem(
+    	try {
+    		Main.cliente.getListaDeCompras().adicionarItem(
     			textFieldNameProduct.getText(), 
     			Integer.parseInt(textFieldQuantidadeProduct.getText()));
+    		ServicesAlerts.Alerts(AlertType.INFORMATION, "Success", null, "produto adicionado com sucesso");
+    		Main.changeTela(telas.menuCliente);
+    		}
+    	catch(MsgException me) {
+    		ServicesAlerts.Alerts(AlertType.ERROR, "Error", null, me.getMessage());
+    	}
     }
     
    

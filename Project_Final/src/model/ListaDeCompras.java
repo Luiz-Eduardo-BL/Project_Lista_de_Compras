@@ -45,11 +45,12 @@ public class ListaDeCompras {
 		throw new MsgException("Produto nao esta no carrinho");
   }
 
-  	public void atualizarQuantidade(String nomeProduto, int quantidade) {
+  	public String atualizarQuantidade(String nomeProduto, int quantidade) {
   		for(int i = 0; i < listaDeItens.size(); i++) 
-  			if(nomeProduto.equals(listaDeItens.get(i).getNomeProduto())) 
+  			if(nomeProduto.equals(listaDeItens.get(i).getNomeProduto())) { 
   				listaDeItens.get(i).setQuantidade(quantidade);
-  		
+  				return "Produto atualizado com sucesso";
+  			}
 		throw new MsgException("Produto nao esta no carrinho");
   	}
 
@@ -64,15 +65,20 @@ public class ListaDeCompras {
   		listaDeItens.clear();
   }
 
-  public float getPrecoTotalLista() {
-    //paga a compra, ve o cartao do cliente, se tiver saldo paga, 
-    if(listaDeItens.size() > 0) {
-      for (Item item : listaDeItens) {
-    	  precoTotalLista += item.getPrecoTotal();
-      }
-    }
-    return precoTotalLista;
-  }
+  	public float getPrecoTotalLista() {
+  		//paga a compra, ve o cartao do cliente, se tiver saldo paga, 
+  		precoTotalLista = 0;
+  		if(listaDeItens.size() > 0) {
+  			for (Item item : listaDeItens) {
+  				precoTotalLista += item.getPrecoTotal();
+  			}
+  		}
+  		return precoTotalLista;
+  	}
+  
+  	public List<Item> getListaDeItens() {
+		return listaDeItens;
+	}
   
   public String toString(){
 	  StringBuilder sb = new StringBuilder();

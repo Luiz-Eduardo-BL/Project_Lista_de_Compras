@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -13,9 +15,18 @@
          </font></Label>
       <Button layoutX="14.0" layoutY="78.0" mnemonicParsing="false" onAction="#btnClickAdicionarProduto" text="Adicionar produto" />
       <Button layoutX="14.0" layoutY="111.0" mnemonicParsing="false" onAction="#btnClickRemoverProduto" text="Remover produto" />
-      <Button layoutX="14.0" layoutY="143.0" mnemonicParsing="false" onAction="#btnClickAtualizarProduto" text="Atualizar quantidade de um produto" />
+      <Button layoutX="14.0" layoutY="143.0" mnemonicParsing="false" onAction="#btnClickAtualizarProduto" prefHeight="25.0" prefWidth="126.0" text="Atualizar quantidade" />
       <Button layoutX="273.0" layoutY="295.0" mnemonicParsing="false" onAction="#btnClickLogout" text="Logout" />
       <Button layoutX="14.0" layoutY="209.0" mnemonicParsing="false" onAction="#btnClickCancelarProdutos" text="Cancelar" />
       <Button layoutX="14.0" layoutY="175.0" mnemonicParsing="false" onAction="#btnClickMostrarProdutos" text="Mostrar itens da carrinho" />
+      <TableView fx:id="tbViewProdutos" layoutX="210.0" layoutY="24.0" prefHeight="225.0" prefWidth="383.0">
+        <columns>
+          <TableColumn fx:id="tcNameProduct" prefWidth="75.0" text="Desc." />
+          <TableColumn fx:id="tcQuantityProduct" prefWidth="75.0" text="Qtde." />
+            <TableColumn fx:id="tcUnitPrice" prefWidth="75.0" text="Vl. Uni." />
+            <TableColumn fx:id="tcDiscount" prefWidth="75.0" text="Desconto" />
+            <TableColumn fx:id="tcValorTotal" prefWidth="75.0" text="ValorTotal" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
