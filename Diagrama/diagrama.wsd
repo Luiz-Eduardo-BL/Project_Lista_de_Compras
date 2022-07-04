@@ -2,57 +2,115 @@
 skinparam ClassAttributeIconSize 0
 
 class Item{
-  -numProtudo:int
-  -nomeProtudo:string
-  -quantidade:int
-  -precoUnitario:float
-  -precoTotal:float
-  -desconto:float
+  -numProtudo : int
+  -nomeProduto : string
+  -precoUnitario : float
+  -quantidade : int
+  -precoTotal : float
+  -desconto : float
 
-  +calcularPrecoTotal():void
-  +toString():string
+  +Item(numProtudo : int, nomeProduto : string, precoUnitario : float, quantidade : int, precoTotal : float, desconto : float)
+  +getNumProtudo() : int
+  +getNomeProduto() : string
+  +getPrecoUnitario() : float
+  +getQuantidade() : int
+  +getPrecoTotal() : float
+  +getDesconto() : float
+  +setNumProtudo(numProtudo : int) : void
+  +setNomeProduto(nomeProduto : string) : void
+  +setPrecoUnitario(precoUnitario : float) : void
+  +setQuantidade(quantidade : int) : void
+  +setPrecoTotal(precoTotal : float) : void
+  +setDesconto(desconto : float) : void
+
+  +calcularPrecoTotal() : void
+  +calcularDesconto() : void
+  +calcularPrecoTotalComDesconto() : void
+  +toString() : string
 } 
+Item "n" --> "1" ListaDeCompras
 
-class Cliente{
-  -nomeCliente:string
-  -cpf:string
-  -cartaoCredito:string
-  -saldoConta:float
+class Cliente extends Usuario implements comparable{
+  -cpf : string
+  -cartaoCredito : string
+  -limiteDisponivelCartao : float
+  -listaDeCompras : List<Item>
 
-  +registrar():void
-  +login():void
-  +atualizarPerfil():void
-  +atualizarSaldo():void
-  +toString():string
+  +Cliente(cpf : string, cartaoCredito : string, limiteDisponivelCartao : float, listaDeCompras : List<Item>)
+  +getCpf() : string
+  +getCartaoCredito() : string
+  +getLimiteDisponivelCartao() : float
+  +getListaDeCompras() : List<Item>
+  +setCpf(cpf : string) : void
+  +setCartaoCredito(cartaoCredito : string) : void
+  +setLimiteDisponivelCartao(limiteDisponivelCartao : float) : void
+  +setListaDeCompras(listaDeCompras : List<Item>) : void
+
+  +toString() : string
 }
 
-abstract class Usuario{
-  -nomeUsuario:string
-  -cpf:string
-  -senha:string
-  -statusLogin:boolean
-  -dataRegistro:string
 
-  +verificarLogin():boolean
+abstract class Usuario{
+  #nome : string
+  #nomeUser : string
+  #senha : string
+  -statusLogin : boolean
+
+  +getNome : string
+  +getNomeUser : string
+  +getSenha : string
+  +getStatusLogin : boolean
+
+  +setNome : void
+  +setNomeUser : void
+  +setSenha : void
+  +setStatusLogin : void
 }
 
 class ListaDeCompras{
-  -listaDeCompras:List<Item>
-  -numListaDeCompras:int
-  -numProtudo:int
-  -quantidade:int
+  -listaDeCompras : List<Item>
+  -precoTotalLista : float
+  -{static}numListaDeCompras : int
 
-  +adicionarItem(item:Item):void
-  +removerItem(item:Item):void
-  +atualizarQuantidade(item:Item):void
-  +efetuarCompra():void
-  +cancelarCompra():void
-  +pagarCompra():void
-  +toString():string
+  +ListaDeCompras()
+  +getPrecoTotalLista() : float
+  +adicionarItem(nomeProduto : string, quantidade : int) : void
+  +removerItem(nomeProduto : string) : void
+  +atualizarQuantidade(nomeProduto : string, quantidade : int) : void
+  +efetuarCompra() : void
+  +cancelarCompra() : void
+  +toString() : string
+
+}
+ListaDeCompras "1 " --> "1    " Cliente
+
+class MsgException{
+  MsgException(message : string)
 }
 
-Item --> ListaDeCompras 
-Cliente <-- ListaDeCompras
-Cliente --|> Usuario
+class ServicesAlerts{
+  +{static}alert(alertType : AlertType, title : string, hearderText : string, contentText : string) : void
+}
+
+class ServicesCliente{
+  +{static}validaUser(str : string) : boolean
+  +{static}validaCPF(str : string) : boolean
+  +{static}validaCartaoCredito(str : string) : boolean
+  +{static}validaNome(str : string) : boolean
+  +{static}validaSenha(str : string) : boolean
+
+  +{static}registrar(nome : string, cpf : string, cartaoCredito : string, nomeUser : string, senha : string) : void
+  +{static}login(nomeUser : string, senha : string) : void
+  +{static}logout(cliente : Cliente) : void
+  +{static}pagarCompra(cliente : Cliente) : void
+  +{static}registerClienteInList(cliente : Cliente) : void
+  +{static}writeListClentes(cliente : List<Cliente>) : void
+  +{static}readListClentes() : List<Cliente>
+}
+
+class ServicesListeDeCompras{
+  +{static}writeListItensDeposito(itensDeposito : List<Item>) : void
+  +{static}readListItensDeposito() : List<Item>
+}
 
 @enduml
