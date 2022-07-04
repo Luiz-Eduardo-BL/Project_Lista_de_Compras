@@ -17,7 +17,7 @@ import model.Cliente;
 public class ServicesCliente {
 	
 	public static boolean validaUser(String str) {
-		if(str.endsWith("") || str.isEmpty())
+		if(str.equals("") || str.isEmpty())
 			throw new MsgException("error: preencha todos os campos");
 		else if(str.matches("[A-Z[a-z[0-9[[-._]]]]]*"))
     		return true;
@@ -26,7 +26,7 @@ public class ServicesCliente {
 	}
 	
 	public static boolean validaSenha(String str) {
-		if(str.endsWith("") || str.isEmpty())
+		if(str.equals("") || str.isEmpty())
 			throw new MsgException("error: preencha todos os campos");
 		if(str.matches("[A-Z[a-z[0-9[[-._]]]]]*"))
     		return true;
@@ -35,7 +35,7 @@ public class ServicesCliente {
 	}
 	
 	public static boolean validaNome(String str) {
-		if(str.endsWith("") || str.isEmpty())
+		if(str.equals("") || str.isEmpty())
 			throw new MsgException("error: preencha todos os campos");
 		else if(str.matches("[A-Z[a-z]]*"))
     		return true;
@@ -44,7 +44,7 @@ public class ServicesCliente {
 	}
 	
 	public static boolean validaCpf(String str) {
-		if(str.endsWith("") || str.isEmpty())
+		if(str.equals("") || str.isEmpty())
 			throw new MsgException("error: preencha todos os campos");
 		else if(str.matches("[0-9]*"))
     		return true;
@@ -53,7 +53,7 @@ public class ServicesCliente {
 	}
 	
 	public static boolean validaCartaoCredito(String str) {
-		if(str.endsWith("") || str.isEmpty())
+		if(str.equals("") || str.isEmpty())
 			throw new MsgException("error: preencha todos os campos");
 		if(str.matches("[0-9]*"))
     		return true;
