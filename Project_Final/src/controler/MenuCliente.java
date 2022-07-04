@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.List;
 /* 
@@ -16,9 +17,13 @@ import application.Main;
 import application.Main.telas;
 import model.Item;
 import services.ServicesAlerts;
+import services.ServicesListeDeCompras;
 
 public class MenuCliente {
-
+	
+    @FXML
+    private Label labelValorTotalCompra;
+    
     @FXML
     private TableView<Item> tbViewProdutos;
     
@@ -49,16 +54,6 @@ public class MenuCliente {
     }
 
     @FXML
-    void btnClickMostrarProdutos(ActionEvent event) {
-    	try {
-    		showTbProdutos(Main.cliente.getListaDeCompras().getListaDeItens());
-    	}
-    	catch(NullPointerException me) {
-    		ServicesAlerts.Alerts(AlertType.ERROR, "Error", null, me.getMessage());
-    	}
-    }
-
-    @FXML
     void btnClickRemoverProduto(ActionEvent event) {
     	Main.changeTela(telas.telaRmProduto);
     }
@@ -66,6 +61,29 @@ public class MenuCliente {
     @FXML
     void btnClickCancelarProdutos(ActionEvent event) {
     	Main.cliente.getListaDeCompras().cancelarCompra();
+    }
+    
+    @FXML
+    void menuItemMostrarProdutosCarrinho(ActionEvent event) {
+    	try {
+    		showTbProdutos(Main.cliente.getListaDeCompras().getListaDeItens());
+    		labelValorTotalCompra.setText(
+    				labelValorTotalCompra.getText()+" "+String.valueOf(Main.cliente.getListaDeCompras().getPrecoTotalLista()));
+    	}
+    	catch(NullPointerException me) {
+    		ServicesAlerts.Alerts(AlertType.ERROR, "Error", null, me.getMessage());
+    	}
+    	
+    }
+    
+    @FXML
+    void menuItemMostrarProdutosDeposito(ActionEvent event) {
+    	try {
+    		showTbProdutos(ServicesListeDeCompras.readListItensDeposito());
+    	}
+    	catch(NullPointerException me) {
+    		ServicesAlerts.Alerts(AlertType.ERROR, "Error", null, me.getMessage());
+    	}
     }
     
     public void showTbProdutos(List<Item> itens) {
@@ -76,7 +94,7 @@ public class MenuCliente {
     	tcUnitPrice.setCellValueFactory(new PropertyValueFactory<>("precoUnitario"));
     	tcValorTotal.setCellValueFactory(new PropertyValueFactory<>("precoTotal"));
     	tcDiscount.setCellValueFactory(new PropertyValueFactory<>("desconto"));
-    	
+   
     	tbViewProdutos.setItems(data);
     }
 
