@@ -26,7 +26,7 @@ public class Main extends Application {
 	}
 	
 	private static Scene sceneMenuInicial, sceneMenuCliente, sceneMenuRegistro,
-						 sceneTelaAddProduto, sceneTelaAttProduto, sceneTelaRmProduto, sceneTelaShowProdutos;
+						 sceneTelaAddProduto, sceneTelaAttProduto, sceneTelaRmProduto;
 	private static Stage primaryStage;
 	
 	public static void changeTela(telas menu) {
@@ -49,9 +49,6 @@ public class Main extends Application {
 		case telaRmProduto:
 			primaryStage.setScene(sceneTelaRmProduto);
 			break;
-		case telaShowProdutos:
-			primaryStage.setScene(sceneTelaShowProdutos);
-			break;
 		default:
 			primaryStage.setScene(sceneMenuInicial);
 		}
@@ -73,8 +70,7 @@ public class Main extends Application {
 					getClass().getResource("../view/telasMenuCliente/TelaAttProduto.fxml"));
 			Parent parentTelaRmProduto = FXMLLoader.load(
 					getClass().getResource("../view/telasMenuCliente/TelaRmProduto.fxml"));
-			Parent parentTelaShowProdutos = FXMLLoader.load(
-					getClass().getResource("../view/telasMenuCliente/TelaShowProdutos.fxml"));
+
 			
 			
 			sceneMenuInicial = new Scene(parentMenuInicial, 600, 400);
@@ -83,7 +79,6 @@ public class Main extends Application {
 			sceneTelaAddProduto = new Scene(parentTelaAddProduto, 600, 400);
 			sceneTelaAttProduto = new Scene(parentTelaAttProduto, 600, 400);
 			sceneTelaRmProduto = new Scene(parentTelaRmProduto, 600, 400);
-			sceneTelaShowProdutos = new Scene(parentTelaShowProdutos, 600, 400);
 			
 			primaryStage.setTitle("Lista de compras");
 			primaryStage.setResizable(false);
