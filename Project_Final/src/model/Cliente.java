@@ -1,7 +1,7 @@
 package model;
 public class Cliente extends Usuario{
 	private String cpf;
-	private String cartaoCredito;
+	private  String cartaoCredito;
 	private float limiteDisponivelCartao;
 	private ListaDeCompras listaDeCompras = new ListaDeCompras();
 	
@@ -26,7 +26,7 @@ public class Cliente extends Usuario{
 		this.cpf = cpf;
 	}
 
-	public String getCartaoCredito() {
+	public  String getCartaoCredito() {
 		return cartaoCredito;
 	}
 	
@@ -58,8 +58,5 @@ public class Cliente extends Usuario{
 		builder.append(limiteDisponivelCartao);
 		builder.append("]");
 		return builder.toString();
-	}
-	
-
-	
+	}	
 }

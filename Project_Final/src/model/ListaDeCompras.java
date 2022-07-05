@@ -55,6 +55,7 @@ public class ListaDeCompras {
   	}
 
   	public void efetuarCompra() {
+			//se o cartao de credito for valido e o saldo for maior que o valor, efetua a compra
   		for (Item item : listaDeItens) {
   			item.setPrecoTotal(item.getPrecoUnitario() * item.getQuantidade());
   		}

@@ -11,6 +11,7 @@ import java.util.List;
  * system inclusions
  */
 import model.Cliente;
+import model.ListaDeCompras;
 
 
 
