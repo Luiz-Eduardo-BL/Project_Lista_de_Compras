@@ -3,8 +3,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controler.MenuRegistro">
@@ -13,7 +18,7 @@
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Label>
-      <Button layoutX="225.0" layoutY="246.0" mnemonicParsing="false" onAction="#btnClickRegister" text="Registre-se" />
+      <Button layoutX="188.0" layoutY="246.0" mnemonicParsing="false" onAction="#btnClickRegister" text="Registre-se" />
       <TextField fx:id="textFieldUser" layoutX="188.0" layoutY="171.0" promptText="Usuario" />
       <TextField fx:id="textFieldName" layoutX="188.0" layoutY="78.0" promptText="Nome" />
       <TextField fx:id="textFieldCpf" layoutX="188.0" layoutY="109.0" promptText="CPF" />
@@ -22,7 +27,21 @@
             <Insets />
          </opaqueInsets>
       </TextField>
-      <TextField fx:id="textFieldPassword" layoutX="188.0" layoutY="203.0" promptText="Senha" />
       <Button layoutX="26.0" layoutY="333.0" mnemonicParsing="false" onAction="#btnClickBack" text="Voltar" />
+      <StackPane layoutX="188.0" layoutY="206.0">
+         <children>
+            <TextField fx:id="to" promptText="Senha" />
+            <PasswordField fx:id="textFieldPassword" promptText="Senha" />
+         </children>
+      </StackPane>
+      <ToggleButton layoutX="284.0" layoutY="246.0" mnemonicParsing="false" onAction="#mostrarSenha" prefHeight="26.0" prefWidth="65.0">
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/ver.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </ToggleButton>
    </children>
 </AnchorPane>

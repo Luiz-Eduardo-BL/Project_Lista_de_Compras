@@ -4,6 +4,7 @@ import application.Main;
 import application.Main.telas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 /* 
@@ -25,10 +26,13 @@ public class MenuRegistro {
     private TextField textFieldName;
 
     @FXML
-    private TextField textFieldPassword;
+    private PasswordField textFieldPassword;
 
     @FXML
     private TextField textFieldUser;
+
+    @FXML
+    private TextField to;
 
     @FXML
     void btnClickRegister(ActionEvent event) {
@@ -50,6 +54,12 @@ public class MenuRegistro {
     @FXML
     void btnClickBack(ActionEvent event) {
     	Main.changeTela(telas.menuInicial);
+    }
+
+    @FXML
+    void mostrarSenha(ActionEvent event) {
+        textFieldPassword.setVisible(false);
+        to.setText(textFieldPassword.getText());
     }
     
 }

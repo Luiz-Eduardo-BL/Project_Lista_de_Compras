@@ -1,6 +1,13 @@
 {
   "configurations": [
-    
+    {
+      "type": "java",
+      "name": "Launch Main",
+      "request": "launch",
+      "mainClass": "application.Main",
+      "projectName": "Project_Final_2680657d",
+      "vmArgs": "--module-path /home/lima/JavaFX/javafx-sdk-18.0.1/lib --add-modules javafx.controls,javafx.base,javafx.fxml,javafx.graphics,javafx.media,javafx.web"
+    },
     {
       "type": "java",
       "name": "Launch Main",

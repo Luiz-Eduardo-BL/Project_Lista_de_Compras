@@ -1,5 +1,7 @@
 package model;
 
+import application.Main;
+
 public class Item {
 	private int numProduto;
 	private String nomeProduto;
@@ -76,6 +78,8 @@ public class Item {
   	//se o valor total for maior q 200,00, o desconto maximo e de 20%
   	//se o valor total for maior q 300,00, o desconto maximo e de 30%
   	private void calcularDesconto() {
+			//somar o valor de todos os itens da lista e ai aplicar o desconto
+			
   		if (this.precoTotal > 100) {
   			this.desconto = this.precoTotal * 0.1f;
   		} else if (this.precoTotal > 200) {

@@ -1,3 +1,8 @@
-1;arroz;4.4;1000
-2;feijao;8.2;1000
+1;arroz;4.4;998
+2;feijao;8.2;998
 3;leite;7.6;1000
+4;farinha;8.2;1000
+5;macarrao;2.5;998
+6;pimentao;1.4;1000
+7;frango;25.3;998
+8;bisteca;19.9;998
