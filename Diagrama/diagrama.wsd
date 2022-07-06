@@ -32,18 +32,12 @@ Item "n" --> "1" ListaDeCompras
 
 class Cliente extends Usuario implements comparable{
   -cpf : string
-  -cartaoCredito : string
-  -limiteDisponivelCartao : float
   -listaDeCompras : List<Item>
 
   +Cliente(cpf : string, cartaoCredito : string, limiteDisponivelCartao : float, listaDeCompras : List<Item>)
   +getCpf() : string
-  +getCartaoCredito() : string
-  +getLimiteDisponivelCartao() : float
   +getListaDeCompras() : List<Item>
   +setCpf(cpf : string) : void
-  +setCartaoCredito(cartaoCredito : string) : void
-  +setLimiteDisponivelCartao(limiteDisponivelCartao : float) : void
   +setListaDeCompras(listaDeCompras : List<Item>) : void
 
   +toString() : string
@@ -77,14 +71,12 @@ class ListaDeCompras{
   +adicionarItem(nomeProduto : string, quantidade : int) : void
   +removerItem(nomeProduto : string) : void
   +atualizarQuantidade(nomeProduto : string, quantidade : int) : void
-  +efetuarCompra() : void
-  +cancelarCompra() : void
   +toString() : string
 
 }
 ListaDeCompras "1 " --> "1    " Cliente
 
-class MsgException{
+class MsgException extends RuntimeException{
   MsgException(message : string)
 }
 
@@ -95,14 +87,12 @@ class ServicesAlerts{
 class ServicesCliente{
   +{static}validaUser(str : string) : boolean
   +{static}validaCPF(str : string) : boolean
-  +{static}validaCartaoCredito(str : string) : boolean
   +{static}validaNome(str : string) : boolean
   +{static}validaSenha(str : string) : boolean
 
   +{static}registrar(nome : string, cpf : string, cartaoCredito : string, nomeUser : string, senha : string) : void
   +{static}login(nomeUser : string, senha : string) : void
   +{static}logout(cliente : Cliente) : void
-  +{static}pagarCompra(cliente : Cliente) : void
   +{static}registerClienteInList(cliente : Cliente) : void
   +{static}writeListClentes(cliente : List<Cliente>) : void
   +{static}readListClentes() : List<Cliente>
