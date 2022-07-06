@@ -32,4 +32,4 @@ Existem também as classes que se encontram na pasta Services, que são classes 
 
 
 ## Diagrama UML
-![](/out/diagrama/diagrama_semFundo.png)
+![](/out/diagrama/diagrama.png)
