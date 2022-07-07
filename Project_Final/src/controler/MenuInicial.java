@@ -17,6 +17,7 @@ import application.Main.telas;
 
 public class MenuInicial {
 	private boolean toogleMostrarSenha = false;
+	
     @FXML
     private PasswordField textFieldPassword;
 
