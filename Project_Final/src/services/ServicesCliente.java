@@ -11,8 +11,6 @@ import java.util.List;
  * system inclusions
  */
 import model.Cliente;
-import model.ListaDeCompras;
-
 
 
 public class ServicesCliente {
@@ -52,24 +50,14 @@ public class ServicesCliente {
     	else
     		throw new MsgException("error: CPF invalido");
 	}
-	
-	public static boolean validaCartaoCredito(String str) {
-		if(str.equals("") || str.isEmpty())
-			throw new MsgException("error: preencha todos os campos");
-		if(str.matches("[0-9]*"))
-    		return true;
-    	else
-    		throw new MsgException("error: Cartao de credito invalido");
-	}
-	
-	public static String registrar(String nome, String cpf, String cartaoCredito, 
+		
+	public static String registrar(String nome, String cpf, 
 			String nomeUser, String senha) {
 		validaNome(nome);
 		validaCpf(cpf);
-		validaCartaoCredito(cartaoCredito);
 		validaUser(nomeUser);
 		validaSenha(senha);
-		registerClienteInList(new Cliente(nome, cpf, cartaoCredito, (float)1000.0, nomeUser, senha));
+		registerClienteInList(new Cliente(nome, cpf, nomeUser, senha));
 		return "Cliente registrado com sucesso";
 	}
 	
@@ -94,34 +82,13 @@ public class ServicesCliente {
 	}
 	
 	
-	public static String pagarCompra(Cliente cliente) {
-		if(cliente.getLimiteDisponivelCartao() < cliente.getListaDeCompras().getPrecoTotalLista()) 
-			throw new MsgException("error: saldo insuficiente");
-		else if(cliente.getListaDeCompras().getPrecoTotalLista() == 0)
-			throw new MsgException("error: nao ha produtos no carrinho");
-		else {
-			cliente.setLimiteDisponivelCartao(cliente.getLimiteDisponivelCartao() - 
-					cliente.getListaDeCompras().getPrecoTotalLista()); 
-			List<Cliente> clientes = readListClientes();
-			for(Cliente clienteLista : clientes) {
-				if(cliente.getNomeUser().equals(clienteLista.getNomeUser())) {
-					clienteLista.setLimiteDisponivelCartao(cliente.getLimiteDisponivelCartao() );					
-					break;
-				}
-			}
-			cliente.getListaDeCompras().cancelarCompra();
-			writeListClientes(clientes);
-			return "Conta paga com sucesso";
-		}
-	}
 	
 	public static void registerClienteInList(Cliente cliente) {
 		try (	FileWriter clienteFile = new FileWriter("src/arquivos/clientesFile.txt", true);
 				PrintWriter clienteWriter = new PrintWriter(clienteFile);)
 		{   
-			clienteWriter.print(String.format("%s;%s;%s;%s;%s;%s\n", cliente.getNome(), 
-					cliente.getCpf(), cliente.getCartaoCredito(), 
-					Float.toString(cliente.getLimiteDisponivelCartao()),
+			clienteWriter.print(String.format("%s;%s;%s;%s\n", 
+					cliente.getNome(), cliente.getCpf(), 
 					cliente.getNomeUser(), cliente.getSenha()));
 		}
 		catch(IOException e) {
@@ -134,9 +101,8 @@ public class ServicesCliente {
 				PrintWriter clienteWriter = new PrintWriter(clienteFile);)
 		{   
 			for (Cliente cliente : clientes) 
-				clienteWriter.print(String.format("%s;%s;%s;%s;%s;%s\n",  
-						cliente.getNome(), cliente.getCpf(), cliente.getCartaoCredito(), 
-						Float.toString(cliente.getLimiteDisponivelCartao()), 
+				clienteWriter.print(String.format("%s;%s;%s;%s\n",  
+						cliente.getNome(), cliente.getCpf(),  
 						cliente.getNomeUser(), cliente.getSenha()));
 		}
 		catch(IOException e) {
@@ -154,9 +120,8 @@ public class ServicesCliente {
         	String aux = clienteStream.readLine();
             String userFields[] = aux != null? aux.split(";") : null;
             while(userFields != null) { // a null string indicates end of file
-            	clientes.add(new Cliente(userFields[0], userFields[1], 
-            							 userFields[2], Float.parseFloat(userFields[3]), 
-            							 userFields[4], userFields[5]));
+            	clientes.add(new Cliente(userFields[0], userFields[1],  
+            							 userFields[2], userFields[3]));
             	aux = clienteStream.readLine();
             	userFields = aux != null? aux.split(";") : null;
             }

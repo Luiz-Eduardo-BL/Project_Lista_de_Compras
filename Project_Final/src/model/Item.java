@@ -1,7 +1,5 @@
 package model;
 
-import application.Main;
-
 public class Item {
 	private int numProduto;
 	private String nomeProduto;

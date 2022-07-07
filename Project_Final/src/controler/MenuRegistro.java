@@ -40,7 +40,6 @@ public class MenuRegistro {
     		ServicesCliente.registrar(
     				textFieldName.getText(),
     				textFieldCpf.getText(),
-    				textFieldCreditCard.getText(),
     				textFieldUser.getText(),
     				textFieldPassword.getText());
     		ServicesAlerts.Alerts(AlertType.INFORMATION, "Success", null, "successfully registered");

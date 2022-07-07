@@ -1,12 +1,5 @@
-Hugo Santos da Costa Bessa;07659246330;084108850;655.60004;hugo_bessa;35211096
-Luiz Eduardo Borges de Lima;07659246330;084108850;0.0;dudu_lima;12345678
-davi;12401441;124525952;1000.0;davi_241;1240512
-maria;124124;125215521;1000.0;maria_03;1255151
-jose afonso;12421525;1242155294;1000.0;ze_21;1234
-qwfjwqogj;214214214;1224214;1000.0;egwqq;24214
-fjqwofj;214214;124214;1000.0;wfqwgqw;21421412
-faushfai;2142141;4124124;1000.0;wwq;4124
-rqwrq;rqwr214;afar;1000.0;14224qwrqwr;afsffadad
-efw;23432;1412;1000.0;fwegw;41241
-luizedu;1233;1233;1000.0;luizedu;3131
-DanyelGranzotti;22322;11223;1000.0;Dg;4411
+Hugo Santos da Costa Bessa;07659246330;hugo_bessa;4321
+Luiz Eduardo Borges de Lima;125215155;dudu_lima;12345678
+luizedu;1233;luizedu;3131
+DanyelGranzotti;22322;Dg;4411
+asfas;142124;asfsafa;214124

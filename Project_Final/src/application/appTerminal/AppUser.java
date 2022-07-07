@@ -43,14 +43,11 @@ public class AppUser {
 			System.out.println("Digite o cpf do cliente: ");
 			String cpf = receiveDate();
 			ServicesCliente.validaCpf(cpf);
-			System.out.println("Digite o cartao do cliente: ");
-			String cartaoCredito = receiveDate();
-			ServicesCliente.validaCartaoCredito(cartaoCredito);
 			System.out.println("Digite o user do cliente: ");
 			String nomeUser = receiveDate();
 			System.out.println("Digite a senha do cliente: ");			
 			String senha = receiveDate();
-			ServicesCliente.registrar(nome, cpf, cartaoCredito, nomeUser, senha);
+			ServicesCliente.registrar(nome, cpf, nomeUser, senha);
 			break;
 			
 		case 2:
@@ -78,8 +75,7 @@ public class AppUser {
 		System.out.println("2. Remover item");
 		System.out.println("3. Atualizar quantidade de um produto");
 		System.out.println("4. Cancelar");
-		System.out.println("5. Pagar");
-		System.out.println("7. Mostrar itens do carrinho");
+		System.out.println("5. Mostrar itens do carrinho");
 		System.out.println("-------------------------------------------------------------------------");
 		selecionaOperacaoCliente();
 	}
@@ -114,9 +110,6 @@ public class AppUser {
 			cliente.getListaDeCompras().cancelarCompra();
 			break;
 		case 5:
-			System.out.println(ServicesCliente.pagarCompra(cliente));
-			break;
-		case 7:
 			System.out.println(cliente.getListaDeCompras().toString()); 
 			break;	
 		default:

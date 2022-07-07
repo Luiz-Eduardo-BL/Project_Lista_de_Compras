@@ -16,7 +16,7 @@ import application.Main;
 import application.Main.telas;
 
 public class MenuInicial {
-
+	private boolean toogleMostrarSenha = false;
     @FXML
     private PasswordField textFieldPassword;
 
@@ -50,7 +50,8 @@ public class MenuInicial {
 
     @FXML
     void mostrarSenha(ActionEvent event) {
-        textFieldPassword.setVisible(false);
+    	toogleMostrarSenha = toogleMostrarSenha ? false : true;
+    	textFieldPassword.setVisible(toogleMostrarSenha);
         to.setText(textFieldPassword.getText());
     }
 
