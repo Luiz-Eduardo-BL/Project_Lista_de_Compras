@@ -84,7 +84,7 @@ public class ServicesCliente {
 	
 	
 	public static void registerClienteInList(Cliente cliente) {
-		try (	FileWriter clienteFile = new FileWriter("src/arquivos/clientesFile.txt", true);
+		try (	FileWriter clienteFile = new FileWriter("arquivos/clientesFile.txt", true);
 				PrintWriter clienteWriter = new PrintWriter(clienteFile);)
 		{   
 			clienteWriter.print(String.format("%s;%s;%s;%s\n", 
@@ -97,7 +97,7 @@ public class ServicesCliente {
 	}
 	
 	public static void writeListClientes(List<Cliente> clientes) {
-		try ( 	FileWriter clienteFile = new FileWriter("src/arquivos/clientesFile.txt");
+		try ( 	FileWriter clienteFile = new FileWriter("arquivos/clientesFile.txt");
 				PrintWriter clienteWriter = new PrintWriter(clienteFile);)
 		{   
 			for (Cliente cliente : clientes) 
@@ -113,7 +113,7 @@ public class ServicesCliente {
 	public static List<Cliente> readListClientes() {
 		List<Cliente> clientes = new ArrayList<Cliente>();
         try (
-                FileReader clientesFile = new FileReader("src/arquivos/clientesFile.txt");
+                FileReader clientesFile = new FileReader("arquivos/clientesFile.txt");
                 BufferedReader clienteStream = new BufferedReader(clientesFile);
             )
         {

@@ -59,17 +59,17 @@ public class Main extends Application {
 		try {
 			primaryStage = stage;
 			Parent parentMenuInicial = FXMLLoader.load(
-					getClass().getResource("../view/MenuInicial.fxml"));
+					getClass().getResource("view/MenuInicial.fxml"));
 			Parent parentMenuCliente = FXMLLoader.load(
-					getClass().getResource("../view/MenuCliente.fxml"));
+					getClass().getResource("view/MenuCliente.fxml"));
 			Parent parentMenuRegistro = FXMLLoader.load(
-					getClass().getResource("../view/MenuRegistro.fxml"));
+					getClass().getResource("view/MenuRegistro.fxml"));
 			Parent parentTelaAddProduto = FXMLLoader.load(
-					getClass().getResource("../view/telasMenuCliente/TelaAddProduto.fxml"));
+					getClass().getResource("view/telasMenuCliente/TelaAddProduto.fxml"));
 			Parent parentTelaAttProduto = FXMLLoader.load(
-					getClass().getResource("../view/telasMenuCliente/TelaAttProduto.fxml"));
+					getClass().getResource("view/telasMenuCliente/TelaAttProduto.fxml"));
 			Parent parentTelaRmProduto = FXMLLoader.load(
-					getClass().getResource("../view/telasMenuCliente/TelaRmProduto.fxml"));
+					getClass().getResource("view/telasMenuCliente/TelaRmProduto.fxml"));
 
 			
 			

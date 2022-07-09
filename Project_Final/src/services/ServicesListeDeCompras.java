@@ -15,7 +15,7 @@ import model
 public class ServicesListeDeCompras {
 	
 	  public static void writeListItensDeposito(List<Item> itensDeposito) {
-			try ( FileWriter itensFile = new FileWriter("src/arquivos/itensDepositoFile.txt");
+			try ( FileWriter itensFile = new FileWriter("arquivos/itensDepositoFile.txt");
 					PrintWriter itemWriter = new PrintWriter(itensFile);)
 			{   
 				for (Item item : itensDeposito) 
@@ -32,7 +32,7 @@ public class ServicesListeDeCompras {
 	  
 	  public static List<Item> readListItensDeposito() {
 		  List<Item> itens = new ArrayList<Item>();
-	      try ( FileReader itensFile = new FileReader("src/arquivos/itensDepositoFile.txt");
+	      try ( FileReader itensFile = new FileReader("arquivos/itensDepositoFile.txt");
 	              BufferedReader itensStream = new BufferedReader(itensFile);)
 	      {
 	    	  String aux = itensStream.readLine();
