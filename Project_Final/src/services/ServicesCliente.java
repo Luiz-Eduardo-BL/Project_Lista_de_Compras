@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -82,7 +84,13 @@ public class ServicesCliente {
 		cliente.setStatusLogin(false);
 	}
 	
-	
+	public static String efetuarPedido(Cliente cliente) {
+		if(cliente.getListaDeCompras().getPrecoTotalLista() != 0) {
+			registerCompraInList(cliente);
+			return "Pedido efetuado com sucesso";
+		}
+		throw new MsgException("error: nenhum pedido no carrinho");
+	}
 	
 	public static void registerClienteInList(Cliente cliente) {
 		try (	FileWriter clienteFile = new FileWriter("arquivos/clientesFile.txt", true);
@@ -140,4 +148,23 @@ public class ServicesCliente {
         
         return clientes;
     }
+	
+	public static void registerCompraInList(Cliente cliente) {
+		try (	FileWriter clienteFile = new FileWriter("arquivos/historicoDeComprasFile.txt", true);
+				PrintWriter clienteWriter = new PrintWriter(clienteFile);)
+		{  
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+			StringBuilder sb = new StringBuilder();
+			sb.append("----------------------------------------------------------------------------\n");
+			sb.append("Data: " + dtf.format(LocalDateTime.now()) + "\n");
+			sb.append("Cliente: " + cliente.getNome() + "\n");
+			sb.append(cliente.getListaDeCompras() + "\n");
+			sb.append("Valor total da compra: " + cliente.getListaDeCompras().getPrecoTotalLista()+ "\n");
+			sb.append("----------------------------------------------------------------------------\n");
+			clienteWriter.print(sb+"\n");
+		}
+		catch(IOException e) {
+			System.out.println("There was a problem writing the file");
+		}
+	}
 }

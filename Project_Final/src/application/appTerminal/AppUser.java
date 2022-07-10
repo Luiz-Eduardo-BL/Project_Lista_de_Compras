@@ -111,6 +111,9 @@ public class AppUser {
 			break;
 		case 5:
 			System.out.println(cliente.getListaDeCompras().toString()); 
+			break;
+		case 6:
+			System.out.println(ServicesCliente.efetuarPedido(cliente)); 
 			break;	
 		default:
 			System.out.println("Operacao invalida, tente outra.");

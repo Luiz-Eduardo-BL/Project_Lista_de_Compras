@@ -1,0 +1,30 @@
+----------------------------------------------------------------------------
+Data: 2022/07/09 23:08:08
+Cliente: Hugo Santos da Costa Bessa
+Item  Descricao     Qtde.         Vl.Uni        Desconto      ValorTotal    
+[000] arroz         20            4.4           0.0           88.0          
+[001] arroz         20            4.4           0.0           88.0          
+[002] feijao        20            8.2           16.4          147.6         
+
+Valor total da compra: 323.6
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+Data: 2022/07/10 09:48:11
+Cliente: Hugo Santos da Costa Bessa
+Item  Descricao     Qtde.         Vl.Uni        Desconto      ValorTotal    
+[000] arroz         30            4.4           13.2          118.8         
+[001] leite         20            7.6           15.2          136.8         
+[002] feijao        40            8.2           32.8          295.2         
+
+Valor total da compra: 550.80005
+----------------------------------------------------------------------------
+
+----------------------------------------------------------------------------
+Data: 2022/07/10 10:19:33
+Cliente: Hugo Santos da Costa Bessa
+Item  Descricao     Qtde.         Vl.Uni        Desconto      ValorTotal    
+[000] arroz         20            4.4           0.0           88.0          
+
+Valor total da compra: 88.0
+----------------------------------------------------------------------------
+

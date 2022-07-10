@@ -16,7 +16,9 @@ import java.util.List;
 import application.Main;
 import application.Main.telas;
 import model.Item;
+import services.MsgException;
 import services.ServicesAlerts;
+import services.ServicesCliente;
 import services.ServicesListeDeCompras;
 
 public class MenuCliente {
@@ -59,6 +61,19 @@ public class MenuCliente {
     }
     
     @FXML
+    void btnClickEfetuarPedidos(ActionEvent event) {
+    	try {
+    		String str = ServicesCliente.efetuarPedido(Main.cliente);
+    		ServicesAlerts.Alerts(AlertType.INFORMATION, "Success", null, str);
+    		Main.changeTela(telas.menuInicial);
+    	}
+    	catch(MsgException me) {
+    		ServicesAlerts.Alerts(AlertType.ERROR, "Error", null, me.getMessage());
+    	}
+    	
+    }
+    
+    @FXML
     void btnClickCancelarProdutos(ActionEvent event) {
     	Main.cliente.getListaDeCompras().cancelarCompra();
     }
@@ -66,34 +81,49 @@ public class MenuCliente {
     @FXML
     void menuItemMostrarProdutosCarrinho(ActionEvent event) {
     	try {
-    		showTbProdutos(Main.cliente.getListaDeCompras().getListaDeItens());
+    		showTbProdutosCarrinho(Main.cliente.getListaDeCompras().getListaDeItens());
     		labelValorTotalCompra.setText(
     				labelValorTotalCompra.getText()+" "+String.valueOf(Main.cliente.getListaDeCompras().getPrecoTotalLista()));
     	}
     	catch(NullPointerException me) {
     		ServicesAlerts.Alerts(AlertType.ERROR, "Error", null, me.getMessage());
     	}
-    	
     }
     
     @FXML
     void menuItemMostrarProdutosDeposito(ActionEvent event) {
     	try {
-    		showTbProdutos(ServicesListeDeCompras.readListItensDeposito());
+    		showTbProdutosDeposito(ServicesListeDeCompras.readListItensDeposito());
     	}
     	catch(NullPointerException me) {
     		ServicesAlerts.Alerts(AlertType.ERROR, "Error", null, me.getMessage());
     	}
     }
     
-    public void showTbProdutos(List<Item> itens) {
+    private void showTbProdutosCarrinho(List<Item> itens) {
     	ObservableList<Item> data = FXCollections.observableArrayList(itens);
+    	
+    	tcQuantityProduct.setVisible(true);
+    	tcValorTotal.setVisible(true);
+    	tcDiscount.setVisible(true);
     	
     	tcNameProduct.setCellValueFactory(new PropertyValueFactory<>("nomeProduto"));
     	tcQuantityProduct.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
     	tcUnitPrice.setCellValueFactory(new PropertyValueFactory<>("precoUnitario"));
     	tcValorTotal.setCellValueFactory(new PropertyValueFactory<>("precoTotal"));
     	tcDiscount.setCellValueFactory(new PropertyValueFactory<>("desconto"));
+   
+    	tbViewProdutos.setItems(data);
+    }
+    
+    private void showTbProdutosDeposito(List<Item> itens) {
+    	ObservableList<Item> data = FXCollections.observableArrayList(itens);
+    	
+    	tcQuantityProduct.setVisible(false);
+    	tcValorTotal.setVisible(false);
+    	tcDiscount.setVisible(false);
+    	tcNameProduct.setCellValueFactory(new PropertyValueFactory<>("nomeProduto"));
+    	tcUnitPrice.setCellValueFactory(new PropertyValueFactory<>("precoUnitario"));
    
     	tbViewProdutos.setItems(data);
     }

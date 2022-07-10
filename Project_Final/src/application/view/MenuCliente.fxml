@@ -19,7 +19,7 @@
       <Button layoutX="14.0" layoutY="111.0" mnemonicParsing="false" onAction="#btnClickRemoverProduto" text="Remover produto" />
       <Button layoutX="14.0" layoutY="143.0" mnemonicParsing="false" onAction="#btnClickAtualizarProduto" prefHeight="25.0" prefWidth="126.0" text="Atualizar quantidade" />
       <Button layoutX="220.0" layoutY="312.0" mnemonicParsing="false" onAction="#btnClickLogout" text="Logout" />
-      <Button layoutX="14.0" layoutY="175.0" mnemonicParsing="false" onAction="#btnClickCancelarProdutos" text="Cancelar" />
+      <Button layoutX="14.0" layoutY="175.0" mnemonicParsing="false" onAction="#btnClickEfetuarPedidos" text="Efetuar Pedido" />
       <TableView fx:id="tbViewProdutos" layoutX="203.0" layoutY="43.0" prefHeight="225.0" prefWidth="383.0">
         <columns>
           <TableColumn fx:id="tcNameProduct" prefWidth="75.0" text="Desc." />
@@ -40,5 +40,6 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
+      <Button layoutX="14.0" layoutY="207.0" mnemonicParsing="false" onAction="#btnClickCancelarProdutos" text="Cancelar" />
    </children>
 </AnchorPane>
