@@ -37,9 +37,9 @@ Existem também as classes que se encontram na pasta Services, que são classes 
 
 ## Rodar arquivo Jar
 
-Para rodar o arquivo `.Jar` utilize o codigo abaixo no terminal e na pasta onde se encontra o arquivo.
+Para rodar o arquivo `.Jar`, que se encontra dentro da pasta ***Project_Final*** utilize o codigo abaixo no terminal e na pasta onde se encontra o arquivo.
 
 `
-java --module-path (Caminho JavaFX)  --add-modules javafx.controls,javafx.base,javafx.fxml,javafx.graphics,javafx.media,javafx.web -jar (arquivo).jar
+java --module-path (Caminho JavaFX)  --add-modules javafx.controls,javafx.base,javafx.fxml,javafx.graphics,javafx.media,javafx.web -jar ListaDeCompras.jar
 `
 
