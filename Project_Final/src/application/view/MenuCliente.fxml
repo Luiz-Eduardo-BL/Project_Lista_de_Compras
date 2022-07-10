@@ -35,11 +35,16 @@
           <MenuItem mnemonicParsing="false" onAction="#menuItemMostrarProdutosDeposito" text="Produtos do deposito" />
         </items>
       </MenuButton>
-      <Label fx:id="labelValorTotalCompra" layoutX="203.0" layoutY="274.0" prefHeight="25.0" prefWidth="226.0" text="Valor total da compra:">
+      <Label layoutX="203.0" layoutY="274.0" prefHeight="25.0" prefWidth="175.0" text="Valor total da compra:">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
       <Button layoutX="14.0" layoutY="207.0" mnemonicParsing="false" onAction="#btnClickCancelarProdutos" text="Cancelar" />
+      <Label fx:id="labelValorTotalCompra" layoutX="378.0" layoutY="274.0" prefHeight="25.0" prefWidth="175.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -83,7 +83,7 @@ public class MenuCliente {
     	try {
     		showTbProdutosCarrinho(Main.cliente.getListaDeCompras().getListaDeItens());
     		labelValorTotalCompra.setText(
-    				labelValorTotalCompra.getText()+" "+String.valueOf(Main.cliente.getListaDeCompras().getPrecoTotalLista()));
+    				String.valueOf(Main.cliente.getListaDeCompras().getPrecoTotalLista()));
     	}
     	catch(NullPointerException me) {
     		ServicesAlerts.Alerts(AlertType.ERROR, "Error", null, me.getMessage());
