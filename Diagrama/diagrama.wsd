@@ -96,6 +96,8 @@ class ServicesCliente{
   +{static}registerClienteInList(cliente : Cliente) : void
   +{static}writeListClentes(cliente : List<Cliente>) : void
   +{static}readListClentes() : List<Cliente>
+  +{static}efetuarPedido(cliente : Cliente) : string
+  +{static}registerCompraInList(cliente : Cliente) : void
 }
 
 class ServicesListeDeCompras{
