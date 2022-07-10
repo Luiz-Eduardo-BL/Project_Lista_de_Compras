@@ -1,6 +1,8 @@
 package model;
-public class Cliente extends Usuario{
+public class Cliente extends Usuario implements Comparable<Cliente> {
 	private String cpf;
+	
+
 	private ListaDeCompras listaDeCompras = new ListaDeCompras();
 	
 	public Cliente() {
@@ -39,5 +41,11 @@ public class Cliente extends Usuario{
 		builder.append(", limiteCartao = ");
 		builder.append("]");
 		return builder.toString();
+	}
+
+	@Override
+	public int compareTo(Cliente cliente) {
+		return this.nome.compareTo(cliente.getNome());
+			
 	}	
 }

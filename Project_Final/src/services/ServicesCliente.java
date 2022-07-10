@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 /* 
  * system inclusions
@@ -90,6 +91,10 @@ public class ServicesCliente {
 			clienteWriter.print(String.format("%s;%s;%s;%s\n", 
 					cliente.getNome(), cliente.getCpf(), 
 					cliente.getNomeUser(), cliente.getSenha()));
+			
+			List<Cliente> clientes = readListClientes();
+			Collections.sort(clientes);
+			writeListClientes(clientes);
 		}
 		catch(IOException e) {
 			System.out.println("There was a problem writing the file");

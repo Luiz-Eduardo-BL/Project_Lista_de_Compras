@@ -15,7 +15,8 @@ import services.ServicesAlerts;
 import services.ServicesCliente;
 
 public class MenuRegistro {
-
+	private boolean toogleMostrarSenha = false;
+	
     @FXML
     private TextField textFieldCpf;
 
