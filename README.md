@@ -9,25 +9,25 @@ Existem também as classes que se encontram na pasta Services, que são classes 
 
 * ***Carrinho (Lista de compras)***
 
-  1. ***Listar compras:*** Mostrará todas as compras adicionadas a lista, com informações como, nome, preço e quantidade.
-  2. ***Adicionar item:*** Poderá adicionar itens à lista, passando o nome e a quantidade do produto, se o mesmo se encontrar no depósito.
-  3. ***Remover item:*** Poderá remover algum ou todos os itens adicionados, passando seu nome
+  1. ***Listar compras:*** Mostrará todas as compras adicionadas a lista, com informações como, nome, preço e quantidade;
+  2. ***Adicionar item:*** Poderá adicionar itens à lista, passando o nome e a quantidade do produto, se o mesmo se encontrar no depósito;
+  3. ***Remover item:*** Poderá remover algum ou todos os itens adicionados, passando seu nome;
   4. ***Atualizar quantidade:*** Poderá modificar a quantidade de itens, caso queira diminuir ou aumentar a quantidade de produtos ao invés de removê-los.
   
 * ***Item***
 
-  1. ***Calcular o preço total:*** Como cada item tem um preço unitário, caso seja selecionado mais de um item ou o mesmo item mais de uma vez, será calculado um preço total deste item com base em seu preço unitário.
-  2. ***Calcular desconto:*** Como os(o) produtos(o) podem ter um preço maior que 100R$, será feito um cálculo de desconto em cima dos(o) mesmos(o).
+  1. ***Calcular o preço total:*** Como cada item tem um preço unitário, caso seja selecionado mais de um item ou o mesmo item mais de uma vez, será calculado um preço total deste item com base em seu preço unitário;
+  2. ***Calcular desconto:*** Como os(o) produtos(o) podem ter um preço maior que 100R$, será feito um cálculo de desconto em cima dos(o) mesmos(o);
   3. ***Calcular preço total com desconto:*** Caso os(o) produtos(o) estejam aptos a receber um desconto o preço total precisa ser atualizado com o cálculo do preço total anterior menos o desconto, tendo assim o preço final com o desconto.
   
 * ***Usuário (Cliente)***
 
-  1. ***Registrar:*** Caso o cliente não tenha cadastro, poderá cadastrar-se criando um usuário e senha, passando informações como nome, cpf, cartão de crédito, para que o sistema possa verificar a validade dos dados e colocá-lo no arquivo de clientes, dando acesso ao mesmo para fazer as compras.
+  1. ***Registrar:*** Caso o cliente não tenha cadastro, poderá cadastrar-se criando um usuário e senha, passando informações como nome, cpf, cartão de crédito, para que o sistema possa verificar a validade dos dados e colocá-lo no arquivo de clientes, dando acesso ao mesmo para fazer as compras;
   2. ***Logar:*** O cliente poderá fazer o login no sistema, para poder fazer as compras, utilizando-se do seu username e senha.
 
 * ***Sistema (Alertas e validações)***
 
-  1. ***Alertas:*** Caso haja algum erro, como login errado o sistema lançará uma notificação mostrando ao usuário o erro.
+  1. ***Alertas:*** Caso haja algum erro, como login errado o sistema lançará uma notificação mostrando ao usuário o erro;
   2. ***Validações:*** O sistema fará as validações de nome, cpf, senha e as demais informações do usuário, caso ocorra algum erro, ele chamará a função de alerta.
 
 
