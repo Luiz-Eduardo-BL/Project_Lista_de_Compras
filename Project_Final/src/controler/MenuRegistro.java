@@ -21,9 +21,6 @@ public class MenuRegistro {
     private TextField textFieldCpf;
 
     @FXML
-    private TextField textFieldCreditCard;
-
-    @FXML
     private TextField textFieldName;
 
     @FXML
@@ -42,7 +39,7 @@ public class MenuRegistro {
     				textFieldName.getText(),
     				textFieldCpf.getText(),
     				textFieldUser.getText(),
-    				textFieldPassword.getText());
+    				to.getText());
     		ServicesAlerts.Alerts(AlertType.INFORMATION, "Success", null, "successfully registered");
     		Main.changeTela(telas.menuInicial);
     	}
