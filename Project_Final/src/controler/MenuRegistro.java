@@ -21,6 +21,9 @@ public class MenuRegistro {
     private TextField textFieldCpf;
 
     @FXML
+    private TextField textFieldCreditCard;
+
+    @FXML
     private TextField textFieldName;
 
     @FXML

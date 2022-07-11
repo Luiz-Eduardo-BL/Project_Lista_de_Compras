@@ -36,7 +36,7 @@ public class MenuInicial {
     @FXML
     void btnClickLogin(ActionEvent event) throws MsgException {
     	try {
-    		Main.cliente = ServicesCliente.login(textFieldUser.getText(), textFieldPassword.getText());
+    		Main.cliente = ServicesCliente.login(textFieldUser.getText(), to.getText());
     		Main.changeTela(telas.menuCliente);
     	}
     	catch(MsgException me) {
