@@ -33,6 +33,9 @@ Existem também as classes que se encontram na pasta Services, que são classes 
 
 
 ## Diagrama UML
+
+No diagrama de classes, implementamos um total de 8 classes. Dividimos elas em 2 pacotes: modelo (modelos) e services (serviços). No pacote model temos as classes Usuario, Cliente, Item, Lista de compras. Alguns pontos importantes são que a classe Usuario é uma classe abstrata e a classe Cliente estende ela (herança). A classe Cliente também implementa a interface Comparable, que compara os clientes lexicograficamente pelo nome. Ainda no pacote model, todas as classes possuem ligações entre si. A classe Item está associada de muitos para um com a classe Lista de compra de forma unidirecional, e a classe Lista de compra está associada de 1 para 1 com a classe Cliente, de forma unidirecional. No pacote serviços, colocamos a maioria dos métodos que seriam usados pela nossa aplicação final. A classe ServicesCliente, possui métodos que lidam com arquivos, para ler e escrever usuários no arquivo clientesFile.txt e os métodos que o usuário final irá interagir, como logar, registrar e efetuar pedido. O ServicesLista de compras está responsável por lidar com arquivos de produtos. Aa classes ServicesAlerts e MsgException são responsáveis por lidar com exceções e lançar alerta na aplicação final.
+
 ![](/out/diagrama/diagrama.png)
 
 ## Rodar arquivo Jar
